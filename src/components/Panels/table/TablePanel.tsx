@@ -1,0 +1,31 @@
+import React, {useEffect, useState} from 'react';
+import style from './TablePanel.module.scss'
+import TableCustom from "../../UI/Table/TableCustom";
+import {useTypeSelector} from "../../../hooks/useTypeSelector";
+import {fillTable} from "./fillTable";
+
+interface TablePanelProps {
+    stasIndex: number,
+}
+
+const TablePanel = ({stasIndex}: TablePanelProps) => {
+    const tableInfo = useTypeSelector(state => state.tableList[stasIndex])
+    const worker = useTypeSelector(state => state.stasList[stasIndex].worker)
+
+    const [tableState, setTableState] = useState({
+        columns: [],
+        data: []
+    })
+
+    useEffect(() => {
+        fillTable(tableInfo, worker, setTableState)
+    }, [tableInfo, worker])
+
+    return (
+        <div className={style.container}>
+            <TableCustom data={tableState.data} columns={tableState.columns}/>
+        </div>
+    );
+};
+
+export default TablePanel;

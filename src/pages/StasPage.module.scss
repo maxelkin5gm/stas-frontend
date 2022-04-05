@@ -1,0 +1,42 @@
+.grid {
+  padding: 20px 0;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 2fr 3fr 3fr;
+  gap: 20px;
+
+  &__item {
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.5);
+  }
+
+  .workerPanel {
+    grid-column: span 2;
+  }
+
+  .detailPanel {
+  }
+
+  .stoPanel {
+  }
+
+  .cellPanel {
+  }
+
+  .tablePanel {
+    grid-column: span 3;
+    grid-row: span 2;
+  }
+
+  .cartPanel {
+    grid-column: span 2;
+  }
+
+  .actionPanel {
+  }
+
+  .statusPanel {
+  }
+
+}
