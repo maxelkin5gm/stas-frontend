@@ -5,6 +5,7 @@ interface AppContainerProps {
     children: React.ReactNode
 }
 
+// todo change name to TabsContainer
 const AppContainer = ({children}: AppContainerProps) => {
     return (
         <section className={containers.appContainer}>

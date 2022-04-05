@@ -1,8 +1,8 @@
 import React from 'react';
 
 import NavBar from "./components/NavBar/NavBar";
-import StasPage from "./pages/StasPage";
-import AppContainer from "./pages/AppContainer";
+import StasPage from "./tabs/StasPage";
+import AppContainer from "./tabs/AppContainer";
 
 function App() {
     return (

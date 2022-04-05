@@ -8,6 +8,8 @@ import StoPanel from "../components/Panels/sto/StoPanel";
 import CellPanel from "../components/Panels/cell/CellPanel";
 import TablePanel from "../components/Panels/table/TablePanel";
 import CartPanel from "../components/Panels/cart/CartPanel";
+import StatusPanel from "../components/Panels/status/StatusPanel";
+import ActionPanel from "../components/Panels/action/ActionPanel";
 
 interface StasPageProps {
     stasIndex: number,
@@ -38,8 +40,10 @@ const StasPage = ({stasIndex}: StasPageProps) => {
                 <CartPanel />
             </div>
             <div className={[style.grid__item, style.actionPanel].join(' ')}>
+                <ActionPanel/>
             </div>
             <div className={[style.grid__item, style.statusPanel].join(' ')}>
+                <StatusPanel/>
             </div>
         </div>
     );
