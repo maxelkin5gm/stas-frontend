@@ -1,13 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import TableCustom from "../../UI/Table/TableCustom";
-import {useTypeSelector} from "../../../hooks/useTypeSelector";
-import {fillTable} from "./fillTable";
+import TableCustom from "../../../UI/Table/TableCustom";
+import {useTypeSelector} from "../../../../hooks/useTypeSelector";
+import {fillTable} from "../../stas/table/fillTable";
 
-interface TablePanelProps {
-    stasIndex: number,
-}
-
-const TablePanel = ({stasIndex}: TablePanelProps) => {
+const TablePanel = () => {
+    const stasIndex = 0;
     const tableInfo = useTypeSelector(state => state.tableList[stasIndex])
     const worker = useTypeSelector(state => state.stasList[stasIndex].worker)
 

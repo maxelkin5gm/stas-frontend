@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 
 import TableCustom from "../../UI/Table/TableCustom";
 import {Button} from "antd";
-import {fillTable} from "../table/fillTable";
+import {fillTable} from "./table/fillTable";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 
 interface CartPanelProps {
@@ -26,7 +26,6 @@ const CartPanel = ({stasIndex}: CartPanelProps) => {
     return (
         <>
             <div style={{minHeight: "200px", overflow: "auto", border: "1px solid black"}}>
-                {/*<TableCustom data={[]} columns={[]}/>*/}
                 <TableCustom data={tableState.data} columns={tableState.columns}/>
             </div>
 

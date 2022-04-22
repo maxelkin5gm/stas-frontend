@@ -1,6 +1,6 @@
-import {TableState, TableTypeEnum} from "../../../store/tableReducer/tableReducer.type";
-import {WorkerService} from "../../../API/WorkerService";
-import {Worker} from "../../../store/stasReducer/stasReducer.type";
+import {TableState, TableTypeEnum} from "../../../../store/tableReducer/tableReducer.type";
+import {WorkerService} from "../../../../API/WorkerService";
+import {Worker} from "../../../../store/stasReducer/stasReducer.type";
 import {workerColumns} from "./columns/workerColumns";
 
 
