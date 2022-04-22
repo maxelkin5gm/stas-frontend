@@ -5,7 +5,7 @@ import {useTypeDispatch} from "../../../hooks/useTypeDispatch";
 import {WorkerService} from "../../../API/WorkerService";
 import {StasStateActionTypes} from "../../../store/stasReducer/stasReducer.type";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
-import InputCustom from "../../UI/Input/InputCustom";
+import InputCustom from "../../Input/InputCustom";
 import {TableStateActionTypes, TableTypeEnum} from "../../../store/tableReducer/tableReducer.type";
 import {AppStateActionTypes} from "../../../store/appReducer/appReducer.type";
 

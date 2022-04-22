@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import InputCustom from "../../UI/Input/InputCustom";
+import InputCustom from "../../Input/InputCustom";
 import {Button} from "antd";
 
 const StoPanel = () => {

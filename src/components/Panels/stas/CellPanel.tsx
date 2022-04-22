@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {Button, Radio} from "antd";
-import InputCustom from "../../UI/Input/InputCustom";
+import InputCustom from "../../Input/InputCustom";
 
 interface CellPanelProps {
     stasIndex: number,

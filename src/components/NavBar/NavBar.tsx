@@ -3,7 +3,7 @@ import style from './NavBar.module.scss'
 import logo from './img/react-logo.svg';
 import containers from '../../styles/containers.module.scss';
 import Tab from "./Tab";
-import Loader from "../UI/Loader/Loader";
+import Loader from "../Loader/Loader";
 
 const NavBar = () => {
     return (

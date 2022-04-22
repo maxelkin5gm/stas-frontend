@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import TableCustom from "../../../UI/Table/TableCustom";
+import TableCustom from "../../../Table/TableCustom";
 import {useTypeSelector} from "../../../../hooks/useTypeSelector";
 import {fillTable} from "../../stas/table/fillTable";
 
