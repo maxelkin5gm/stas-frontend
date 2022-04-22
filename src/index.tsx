@@ -1,11 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
 import {Provider} from "react-redux";
 import {store} from "./store/store";
 
 import './styles/index.css';
-import 'antd/dist/antd.min.css'
+import 'antd/dist/antd.min.css';
+import containers from "./styles/containers.module.scss";
+
+import NavBar from "./components/NavBar/NavBar";
+import StasTab from "./tabs/StasTab";
+import SearchAllTab from "./tabs/SearchAllTab";
+import AdminTab from "./tabs/AdminTab";
 
 
 const root = ReactDOM.createRoot(
@@ -15,7 +20,19 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <Provider store={store}>
-            <App/>
+
+            <NavBar/>
+
+            <div className={containers.tabContainer}>
+                <StasTab stasIndex={0}/>
+                <StasTab stasIndex={1}/>
+                <StasTab stasIndex={2}/>
+
+                <SearchAllTab/>
+
+                <AdminTab/>
+            </div>
+
         </Provider>
     </React.StrictMode>,
 );
