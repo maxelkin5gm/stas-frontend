@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {useTypeDispatch} from "../../hooks/useTypeDispatch";
-import {AppStateAction} from "../../store/appReducer/appReducer.type";
+import {AppStateActionTypes} from "../../store/appReducer/appReducer.type";
 
 interface TabProps {
     children: React.ReactNode,
@@ -22,7 +22,7 @@ const Tab = ({children, className, classActive, tabIndex}: TabProps) => {
         <button
             className={classNameCalc}
             onClick={() => dispatch({
-                type: AppStateAction.CHANGE_TAB,
+                type: AppStateActionTypes.CHANGE_TAB,
                 tabIndex: tabIndex
             })}
         >{children}</button>

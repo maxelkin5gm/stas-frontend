@@ -1,4 +1,4 @@
-import {TableAction, TableState, TableStateAction, TableTypeEnum} from "./tableReducer.type";
+import {TableAction, TableState, TableStateActionTypes, TableTypeEnum} from "./tableReducer.type";
 
 const tableInit: TableState = {
     type: TableTypeEnum.INIT,
@@ -12,10 +12,10 @@ export const tableReducer = (state: TableState[] = initialStore, action: TableAc
 
     switch (action.type) {
 
-        case TableStateAction.REFRESH_TABLE:
+        case TableStateActionTypes.REFRESH_TABLE:
             return newState;
 
-        case TableStateAction.SET_WORKER_TABLE:
+        case TableStateActionTypes.SET_WORKER_TABLE:
             newState[action.stasIndex] = {
                 type: TableTypeEnum.WORKER,
                 query: undefined

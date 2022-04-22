@@ -6,6 +6,12 @@
 .header {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+
+  &__leftSide {
+    display: flex;
+    align-items: center;
+  }
 
   &__logo {
     margin-right: 20px;

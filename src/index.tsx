@@ -11,6 +11,7 @@ import NavBar from "./components/NavBar/NavBar";
 import StasTab from "./tabs/StasTab";
 import SearchAllTab from "./tabs/SearchAllTab";
 import AdminTab from "./tabs/AdminTab";
+import ErrorModal from "./components/ErrorModal/ErrorModal";
 
 
 const root = ReactDOM.createRoot(
@@ -32,6 +33,8 @@ root.render(
 
                 <AdminTab/>
             </div>
+
+            <ErrorModal/>
 
         </Provider>
     </React.StrictMode>,

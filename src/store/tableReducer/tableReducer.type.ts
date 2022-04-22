@@ -23,25 +23,26 @@ export enum TableTypeEnum {
     CELL = "CELL"
 }
 
-/**
- * Actions types
- */
-export enum TableStateAction {
+
+export enum TableStateActionTypes {
     SET_WORKER_TABLE = "SET_WORKER_TABLE",
     SET_DETAIL_TABLE = "SET_DETAIL_TABLE",
     SET_STO_TABLE = "SET_STO_TABLE",
     SET_CELL_TABLE = "SET_CELL_TABLE",
     REFRESH_TABLE = "REFRESH_TABLE",
 }
+/**
+ * Actions
+ */
 export interface SetWorkerTableAction {
-    type: TableStateAction.SET_WORKER_TABLE,
+    type: TableStateActionTypes.SET_WORKER_TABLE,
     stasIndex: number,
     table: {
         type: TableTypeEnum.WORKER,
     },
 }
 export interface SetDetailTableAction {
-    type: TableStateAction.SET_DETAIL_TABLE,
+    type: TableStateActionTypes.SET_DETAIL_TABLE,
     stasIndex: number,
     table: {
         type: TableTypeEnum.DETAIL,
@@ -49,7 +50,7 @@ export interface SetDetailTableAction {
     },
 }
 export interface SetStoTableAction {
-    type: TableStateAction.SET_STO_TABLE,
+    type: TableStateActionTypes.SET_STO_TABLE,
     stasIndex: number,
     table: {
         type: TableTypeEnum.STO,
@@ -57,7 +58,7 @@ export interface SetStoTableAction {
     },
 }
 export interface SetCellTableAction {
-    type: TableStateAction.SET_CELL_TABLE,
+    type: TableStateActionTypes.SET_CELL_TABLE,
     stasIndex: number,
     table: {
         type: TableTypeEnum.CELL,
@@ -65,7 +66,7 @@ export interface SetCellTableAction {
     },
 }
 export interface RefreshTableAction {
-    type: TableStateAction.REFRESH_TABLE,
+    type: TableStateActionTypes.REFRESH_TABLE,
     stasIndex: number
 }
 export type TableAction = SetWorkerTableAction | SetDetailTableAction | SetStoTableAction | SetCellTableAction | RefreshTableAction;

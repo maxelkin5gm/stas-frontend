@@ -1,4 +1,4 @@
-import {StasAction, StasStateAction, StasState, StasStateEnum} from "./stasReducer.type";
+import {StasAction, StasStateActionTypes, StasState, StasStateEnum} from "./stasReducer.type";
 
 const stasInit: StasState = {
     state: StasStateEnum.READY,
@@ -15,11 +15,11 @@ export const stasReducer = (state: StasState[] = initialStore, action: StasActio
 
     switch (action.type) {
 
-        case StasStateAction.CHANGE_WORKER:
+        case StasStateActionTypes.CHANGE_WORKER:
             newState[action.stasIndex].worker = action.worker;
             return newState;
 
-        case StasStateAction.RESET_WORKER:
+        case StasStateActionTypes.RESET_WORKER:
             newState[action.stasIndex].worker = {name: '', personnelNumber: ''};
             return newState;
 
