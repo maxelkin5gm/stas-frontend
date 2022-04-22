@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import {Button} from "antd";
 
-import containers from '../../../styles/containers.module.scss'
-import style from './WorkerPanel.module.scss'
 import {useTypeDispatch} from "../../../hooks/useTypeDispatch";
 import {WorkerService} from "../../../API/WorkerService";
 import {StasStateAction} from "../../../store/stasReducer/stasReducer.type";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
-import InputCustom from "../../UI/Input/Input";
+import InputCustom from "../../UI/Input/InputCustom";
 import {TableStateAction, TableTypeEnum} from "../../../store/tableReducer/tableReducer.type";
 
 interface WorkerPanelProps {
@@ -30,6 +28,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             stasIndex
         })
     }
+
     async function selectByNumberHandler() {
         const personnelNumber = numberInputState[0];
         const worker = await WorkerService.findByPersonnelNumber(personnelNumber)
@@ -39,6 +38,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             stasIndex
         })
     }
+
     function resetHandler() {
         dispatch({
             type: StasStateAction.RESET_WORKER,
@@ -57,39 +57,41 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
     }
 
     return (
-        <div className={containers.panelContainer}>
-            <div className={style.flexContainer}>
-                <div className={style.top}>
-                    <div>
-                        <div className={style.input1}>
-                            <InputCustom placeholder={"Табельный номер"} type={"number"} valueState={numberInputState}/>
-                            <Button type="primary" size="large" onClick={selectByNumberHandler} key={stasIndex}>Выбрать</Button>
-                        </div>
-                        <div className={style.input2}>
-                            <InputCustom placeholder={"ФИО"} valueState={nameInputState}/>
-                            <Button type="primary" size="large" onClick={selectByNameHandler}>Выбрать</Button>
-                        </div>
-                    </div>
-                    <div className="reset">
-                        <Button type="primary" size="large" onClick={resetHandler}>Сбросить</Button>
-                    </div>
-                </div>
-
-                <div className={style.bottom}>
-                    <div className={style.status}>
-                        <span>
-                            {worker.name
-                                ? `${worker.name} (${worker.personnelNumber})`
-                                : "Не выбрано"}
-                        </span>
-                    </div>
-                    <div className={style.show}>
-                        <Button type="primary" size="large" onClick={tableHandler}>Показать выданные СТО</Button>
-                    </div>
-                </div>
+        <>
+            <div>
+                <InputCustom placeholder={"Табельный номер"} type={"number"} valueState={numberInputState}/>
             </div>
-        </div>
-    );
+
+            <div>
+                <Button type="primary" size="middle" onClick={selectByNumberHandler} key={stasIndex}>Выбрать</Button>
+            </div>
+
+            <div style={{gridRow: "span 2"}}>
+                <Button style={{width: "100%"}} type="primary" size="middle" onClick={resetHandler}>Сбросить</Button>
+            </div>
+
+            <div>
+                <InputCustom placeholder={"ФИО"} valueState={nameInputState}/>
+            </div>
+
+            <div>
+                <Button type="primary" size="middle" onClick={selectByNameHandler}>Выбрать</Button>
+            </div>
+
+            <div style={{textAlign: "center"}}>
+                <span style={{fontSize: 16, fontWeight: "bold"}}>
+                    {worker.name
+                        ? `${worker.name} (${worker.personnelNumber})`
+                        : "Не выбрано"}
+                </span>
+            </div>
+
+            <div style={{gridColumn: "span 2"}}>
+                <Button style={{width: "100%"}} type="primary" size="middle" onClick={tableHandler}>Показать выданные СТО</Button>
+            </div>
+        </>
+    )
+        ;
 };
 
 export default WorkerPanel;

@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import containers from "../../../styles/containers.module.scss";
-import style from './CellPanel.module.scss'
 import {Button, Radio} from "antd";
-import InputCustom from "../../UI/Input/Input";
+import InputCustom from "../../UI/Input/InputCustom";
 
 interface CellPanelProps {
     stasIndex: number,
@@ -13,20 +11,27 @@ const CellPanel = ({stasIndex}: CellPanelProps) => {
     const [radioValue, setRadioValue] = useState("ПРАВО");
 
     return (
-        <div className={containers.panelContainer}>
-            <div className={style.container}>
-                <div className="inputs">
-                    <Radio.Group defaultValue="ПРАВО" buttonStyle="solid" value={radioValue} onChange={(e => setRadioValue(e.target.value))}>
-                        <Radio.Button value="ПРАВО">Право</Radio.Button>
-                        <Radio.Button value="ЛЕВО">Лево</Radio.Button>
-                    </Radio.Group>
-                    <InputCustom type={"number"} valueState={cellInputState} placeholder={"Номер ячейки"}/>
-                </div>
-                <Button type="primary" size={"middle"}>Показать</Button>
-                <br/>
-                <Button type="primary">Показать привезенную ячейку</Button>
+        <>
+            <div>
+                <InputCustom type={"number"} valueState={cellInputState} placeholder={"№ ячейки"}/>
             </div>
-        </div>
+
+            <div>
+                <Radio.Group size="small" defaultValue="ПРАВО" buttonStyle="solid" value={radioValue} onChange={(e => setRadioValue(e.target.value))}>
+                    <Radio.Button value="ПРАВО">ПРАВО</Radio.Button>
+                    <Radio.Button value="ЛЕВО ">ЛЕВО</Radio.Button>
+                </Radio.Group>
+            </div>
+
+            <div style={{gridColumn: "span 2"}}>
+                <Button type="primary" size="middle">Показать</Button>
+            </div>
+
+            <div style={{gridColumn: "span 2"}}>
+                <Button type="primary" size="middle">Показать привезенную</Button>
+            </div>
+        </>
+
     );
 };
 

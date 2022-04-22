@@ -1,5 +1,5 @@
 import React, {ChangeEvent, HTMLInputTypeAttribute} from 'react';
-import style from './Input.module.scss'
+import style from './InputcCustom.module.scss'
 
 interface InputCustomProps {
     type?: HTMLInputTypeAttribute,

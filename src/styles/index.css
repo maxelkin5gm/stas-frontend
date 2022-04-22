@@ -1,4 +1,4 @@
-/* NORMALIZE */
+/* Normalize */
 *,
 *:before,
 *:after {
@@ -7,7 +7,7 @@
     border: 0;
     box-sizing: border-box;
 }
-/* NORMALIZE END */
+/* Normalize END */
 
 body {
     background: url("./img/background.png");
@@ -17,6 +17,6 @@ body {
 #root {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template: max-content 1fr / 1fr;
 }

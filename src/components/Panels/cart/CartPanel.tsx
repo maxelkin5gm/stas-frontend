@@ -1,15 +1,43 @@
-import React from 'react';
-import containers from "../../../styles/containers.module.scss";
-import style from './CartPanel.module.scss'
-import TableCustom from "../../UI/Table/TableCustom";
+import React, {useEffect, useState} from 'react';
 
-const CartPanel = () => {
+import TableCustom from "../../UI/Table/TableCustom";
+import {Button} from "antd";
+import {fillTable} from "../table/fillTable";
+import {useTypeSelector} from "../../../hooks/useTypeSelector";
+
+interface CartPanelProps {
+    stasIndex: number,
+}
+
+const CartPanel = ({stasIndex}: CartPanelProps) => {
+    const tableInfo = useTypeSelector(state => state.tableList[stasIndex])
+    const worker = useTypeSelector(state => state.stasList[stasIndex].worker)
+
+    const [tableState, setTableState] = useState({
+        columns: [],
+        data: []
+    })
+
+    useEffect(() => {
+        fillTable(tableInfo, worker, setTableState)
+    }, [tableInfo, worker])
+
+
     return (
-        <div className={containers.panelContainer}>
-            <div className={style.container}>
-                <TableCustom data={[]} columns={[]}/>
+        <>
+            <div style={{minHeight: "200px", overflow: "auto"}}>
+                {/*<TableCustom data={[]} columns={[]}/>*/}
+                <TableCustom data={tableState.data} columns={tableState.columns}/>
             </div>
-        </div>
+
+
+            <div style={{display: "grid", gridTemplate: "1fr 1fr / 1fr 1fr", gridGap: "5px"}}>
+                <Button type="primary" size="middle">Выбрать все</Button>
+                <Button type="primary" size="middle">Выдать</Button>
+                <Button type="primary" size="middle">Очистить</Button>
+                <Button type="primary" size="middle">Положить</Button>
+            </div>
+        </>
     );
 };
 

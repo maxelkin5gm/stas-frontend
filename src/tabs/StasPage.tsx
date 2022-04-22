@@ -37,10 +37,10 @@ const StasPage = ({stasIndex}: StasPageProps) => {
                 <TablePanel stasIndex={stasIndex}/>
             </div>
             <div className={[style.grid__item, style.cartPanel].join(' ')}>
-                <CartPanel />
+                {/*<CartPanel />*/}
             </div>
             <div className={[style.grid__item, style.actionPanel].join(' ')}>
-                <ActionPanel/>
+                {/*<ActionPanel/>*/}
             </div>
             <div className={[style.grid__item, style.statusPanel].join(' ')}>
                 <StatusPanel/>

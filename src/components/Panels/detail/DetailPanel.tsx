@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
-import containers from "../../../styles/containers.module.scss";
 import {Button} from "antd";
-import style from './DetailPanel.module.scss'
-import InputCustom from "../../UI/Input/Input";
+import InputCustom from "../../UI/Input/InputCustom";
 
 interface DetailPanelProps {
     stasIndex: number,
@@ -13,13 +11,19 @@ const DetailPanel = ({stasIndex}: DetailPanelProps) => {
     const numberInputState = useState("");
 
     return (
-        <div className={containers.panelContainer}>
-            <div className={style.container}>
+        <>
+            <div>
                 <InputCustom valueState={detailInputState} placeholder={"Обозначение детали"}/>
-                <InputCustom valueState={numberInputState} placeholder={"Номер операции"}/>
-                <Button type="primary" size="large">Показать</Button>
             </div>
-        </div>
+
+            <div>
+                <InputCustom valueState={numberInputState} placeholder={"Номер операции"}/>
+            </div>
+
+            <div style={{textAlign: "center"}}>
+                <Button type="primary" size="middle">Показать</Button>
+            </div>
+        </>
     );
 };
 

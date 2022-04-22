@@ -1,19 +1,19 @@
 import React from 'react';
 
 import NavBar from "./components/NavBar/NavBar";
-import StasPage from "./tabs/StasPage";
-import AppContainer from "./tabs/AppContainer";
+import StasTab from "./tabs/StasTab";
+import containers from "./styles/containers.module.scss"
 
 function App() {
     return (
         <>
             <NavBar/>
 
-            <AppContainer>
-                <StasPage stasIndex={0}/>
-                <StasPage stasIndex={1}/>
-                <StasPage stasIndex={2}/>
-            </AppContainer>
+            <div className={containers.tabContainer}>
+                <StasTab stasIndex={0}/>
+                <StasTab stasIndex={1}/>
+                <StasTab stasIndex={2}/>
+            </div>
         </>
     );
 }

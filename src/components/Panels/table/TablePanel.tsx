@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import style from './TablePanel.module.scss'
 import TableCustom from "../../UI/Table/TableCustom";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {fillTable} from "./fillTable";
@@ -22,9 +21,9 @@ const TablePanel = ({stasIndex}: TablePanelProps) => {
     }, [tableInfo, worker])
 
     return (
-        <div className={style.container}>
+        <>
             <TableCustom data={tableState.data} columns={tableState.columns}/>
-        </div>
+        </>
     );
 };
 
