@@ -1,7 +1,7 @@
 import React from 'react';
-
 import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {useTypeDispatch} from "../../hooks/useTypeDispatch";
+
 import {AppStateActionTypes} from "../../store/appReducer/appReducer.type";
 
 interface TabProps {

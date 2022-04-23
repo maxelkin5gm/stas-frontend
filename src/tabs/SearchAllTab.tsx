@@ -1,6 +1,7 @@
 import React from 'react';
-import style from "./SearchAllTab.module.scss";
 import {useTypeSelector} from "../hooks/useTypeSelector";
+
+import cl from "./SearchAllTab.module.scss";
 import WorkerPanel from "../components/Panels/searchAll/WorkerPanel";
 import DetailPanel from "../components/Panels/searchAll/DetailPanel";
 import StoPanel from "../components/Panels/searchAll/StoPanel";
@@ -12,25 +13,25 @@ const SearchAllTab = () => {
     const displayStyle = (tabIndex === 3) ? {} : {display: "none"}
 
     return (
-        <div className={style.tab} style={displayStyle}>
+        <div className={cl.tab} style={displayStyle}>
 
-            <div className={style.worker}>
+            <div className={cl.worker}>
                 <WorkerPanel/>
             </div>
 
-            <div className={style.detail}>
+            <div className={cl.detail}>
                 <DetailPanel/>
             </div>
 
-            <div className={style.sto}>
+            <div className={cl.sto}>
                 <StoPanel/>
             </div>
 
-            <div className={style.remainderSto}>
+            <div className={cl.remainderSto}>
                 <RemainderStoPanel/>
             </div>
 
-            <div className={style.table}>
+            <div className={cl.table}>
                 <TablePanel/>
             </div>
 

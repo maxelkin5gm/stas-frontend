@@ -3,13 +3,19 @@ import {Worker} from "../store/stasReducer/stasReducer.type";
 
 export class WorkerService {
 
-    static async findByName(name: string) {
+    static async findAllByName(name: string) {
         // if (res.status !== 200) {  }
 
-        return {
-            name: "Елькин",
-            personnelNumber: "228"
-        } as Worker
+        return [
+            {
+                name: "Елькин",
+                personnelNumber: "228"
+            },
+            {
+                name: "Елькин",
+                personnelNumber: "229"
+            }
+        ] as Worker[]
     }
 
     static async findByPersonnelNumber(personnelNumber: string) {

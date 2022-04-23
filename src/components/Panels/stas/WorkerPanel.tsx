@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {Button} from "antd";
-
-import {useTypeDispatch} from "../../../hooks/useTypeDispatch";
-import {WorkerService} from "../../../API/WorkerService";
-import {StasStateActionTypes} from "../../../store/stasReducer/stasReducer.type";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
+import {useTypeDispatch} from "../../../hooks/useTypeDispatch";
+
+import {WorkerService} from "../../../API/WorkerService";
+import {StasStateActionTypes, Worker} from "../../../store/stasReducer/stasReducer.type";
 import InputCustom from "../../Input/InputCustom";
 import {TableStateActionTypes, TableTypeEnum} from "../../../store/tableReducer/tableReducer.type";
 import {AppStateActionTypes} from "../../../store/appReducer/appReducer.type";
-
+import SelectWorkerModal from "../../Modals/SelectWorkerModal";
 
 interface WorkerPanelProps {
     stasIndex: number
@@ -16,28 +16,27 @@ interface WorkerPanelProps {
 
 const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
 
-    const numberInputState = useState("")
-    const nameInputState = useState("")
-    const worker = useTypeSelector(state => state.stasList[stasIndex].worker)
-    const dispatch = useTypeDispatch()
+    const [modal, setModal] = useState({visible: false, workers: [] as Worker[]});
+    const numberInputState = useState("");
+    const nameInputState = useState("");
+    const worker = useTypeSelector(state => state.stasList[stasIndex].worker);
+    const dispatch = useTypeDispatch();
 
     async function selectByNameHandler() {
-        dispatch({
-            type:AppStateActionTypes.SET_ERROR_MODAL,
-            visible: true,
-            text: "sosi"
-        })
-
-        const name = nameInputState[0];
         dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: true})
-        const worker = await WorkerService.findByName(name)
-        // dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: false})
+        const name = nameInputState[0];
 
-        if (worker) dispatch({
-            type: StasStateActionTypes.CHANGE_WORKER,
-            worker,
-            stasIndex
-        })
+        const workers = await WorkerService.findAllByName(name)
+
+        if (!workers || workers.length === 0)
+            dispatch({type: AppStateActionTypes.SET_ERROR_MODAL, visible: true, text: "sosi"})
+
+        if (workers.length === 1)
+            dispatch({type: StasStateActionTypes.CHANGE_WORKER, worker, stasIndex})
+        else setModal({visible: true, workers: workers})
+
+
+        // dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: false})
     }
 
     async function selectByNumberHandler() {
@@ -45,18 +44,11 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
 
         const personnelNumber = numberInputState[0];
         const worker = await WorkerService.findByPersonnelNumber(personnelNumber)
-        dispatch({
-            type: StasStateActionTypes.CHANGE_WORKER,
-            worker,
-            stasIndex
-        })
+        dispatch({type: StasStateActionTypes.CHANGE_WORKER, worker, stasIndex})
     }
 
     function resetHandler() {
-        dispatch({
-            type: StasStateActionTypes.RESET_WORKER,
-            stasIndex
-        })
+        dispatch({type: StasStateActionTypes.RESET_WORKER, stasIndex})
     }
 
     function tableHandler() {
@@ -71,6 +63,8 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
 
     return (
         <>
+            <SelectWorkerModal modal={modal} onClose={() => setModal({...modal, visible: false})}/>
+
             <div>
                 <InputCustom placeholder={"Табельный номер"} type={"number"} valueState={numberInputState}/>
             </div>
@@ -100,7 +94,8 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             </div>
 
             <div style={{gridColumn: "span 2"}}>
-                <Button style={{width: "100%"}} type="primary" size="middle" onClick={tableHandler}>Показать выданные СТО</Button>
+                <Button style={{width: "100%"}} type="primary" size="middle" onClick={tableHandler}>Показать выданные
+                    СТО</Button>
             </div>
         </>
     );

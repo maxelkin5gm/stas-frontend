@@ -1,5 +1,5 @@
 import React, {ChangeEvent, HTMLInputTypeAttribute} from 'react';
-import style from './InputcCustom.module.scss'
+import cl from './InputcCustom.module.scss'
 
 interface InputCustomProps {
     type?: HTMLInputTypeAttribute,
@@ -17,7 +17,7 @@ const InputCustom = ({type = "text", placeholder = "", valueState}: InputCustomP
     }
 
     return (
-        <input type={type} className={style.input} value={value} onChange={handler} placeholder={placeholder}/>
+        <input type={type} className={cl.input} value={value} onChange={handler} placeholder={placeholder}/>
     );
 };
 

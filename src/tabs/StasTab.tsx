@@ -1,6 +1,7 @@
 import React from 'react';
 import {useTypeSelector} from "../hooks/useTypeSelector";
-import style from "./StasTab.module.scss"
+
+import cl from "./StasTab.module.scss"
 import WorkerPanel from "../components/Panels/stas/WorkerPanel";
 import TablePanel from "../components/Panels/stas/table/TablePanel";
 import DetailPanel from "../components/Panels/stas/DetailPanel";
@@ -19,29 +20,29 @@ const StasTab = ({stasIndex}: StasTabProps) => {
     const displayStyle = (tabIndex === stasIndex) ? {} : {display: "none"}
 
     return (
-        <div className={style.tab} style={displayStyle}>
-            <div className={style.worker}>
+        <div className={cl.tab} style={displayStyle}>
+            <div className={cl.worker}>
                 <WorkerPanel stasIndex={stasIndex}/>
             </div>
-            <div className={style.detail}>
+            <div className={cl.detail}>
                 <DetailPanel stasIndex={stasIndex}/>
             </div>
-            <div className={style.sto}>
+            <div className={cl.sto}>
                 <StoPanel stasIndex={stasIndex}/>
             </div>
-            <div className={style.cell}>
+            <div className={cl.cell}>
                 <CellPanel stasIndex={stasIndex}/>
             </div>
-            <div className={style.table}>
+            <div className={cl.table}>
                 <TablePanel stasIndex={stasIndex}/>
             </div>
-            <div className={style.cart}>
+            <div className={cl.cart}>
                 <CartPanel stasIndex={stasIndex} />
             </div>
-            <div className={style.action}>
+            <div className={cl.action}>
                 <ActionPanel stasIndex={stasIndex} />
             </div>
-            <div className={style.status}>
+            <div className={cl.status}>
                 <StatusPanel />
             </div>
         </div>

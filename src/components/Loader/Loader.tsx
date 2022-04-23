@@ -1,6 +1,7 @@
 import React from 'react';
-import style from "./Loader.module.scss"
 import {useTypeSelector} from "../../hooks/useTypeSelector";
+
+import cl from "./Loader.module.scss"
 
 const Loader = () => {
     const isLoading = useTypeSelector((state) => state.app.isLoading)
@@ -8,7 +9,7 @@ const Loader = () => {
     if (!isLoading) return null;
 
     return (
-        <div className={style.ldsRing}>
+        <div className={cl.ldsRing}>
             <div></div>
             <div></div>
             <div></div>
