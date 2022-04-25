@@ -54,7 +54,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
                 type: AppStateActionTypes.SET_ERROR_MODAL,
                 visible: true,
                 title: "Ошибка",
-                text: "Сотрудника с таким ФИО не найдено"
+                text: "Сотрудника с таким табельным номером не найдено"
             });
         else
             dispatch({type: StasStateActionTypes.SET_WORKER, worker, stasIndex});

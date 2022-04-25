@@ -10,6 +10,8 @@ const TablePanel = ({stasIndex}: TablePanelProps) => {
     return (
         <>
             <MainTable stasIndex={stasIndex}/>
+
+
         </>
     );
 };
