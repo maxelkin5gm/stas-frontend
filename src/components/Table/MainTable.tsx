@@ -3,7 +3,7 @@ import {Table} from "antd";
 
 
 
-const TableCustom = ({data, columns} :{data: any, columns: any}) => {
+const MainTable = ({data, columns} :{data: any, columns: any}) => {
     const [selectedRow, setSelectedRow] = useState(0)
 
     return (
@@ -34,4 +34,4 @@ const TableCustom = ({data, columns} :{data: any, columns: any}) => {
     );
 };
 
-export default TableCustom;
+export default MainTable;

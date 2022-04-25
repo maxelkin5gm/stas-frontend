@@ -2,8 +2,9 @@ import React from 'react';
 import {useTypeDispatch} from "../../hooks/useTypeDispatch";
 
 import BaseModal from "./BaseModal";
-import {StasStateActionTypes, Worker} from "../../store/stasReducer/stasReducer.type";
+import {StasStateActionTypes} from "../../store/stasReducer/stasReducer.type";
 import cl from "./SelectWorkerModal.module.scss";
+import {Worker} from "../../store/stasReducer/types/worker.types";
 
 interface SelectWorkerModalProps {
     modalState: {

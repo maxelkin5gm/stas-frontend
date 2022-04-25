@@ -1,4 +1,6 @@
-import {StasAction, StasStateActionTypes, StasState, StasStateEnum} from "./stasReducer.type";
+import {StasAction, StasState, StasStateActionTypes} from "./stasReducer.type";
+import {StasStateEnum} from "./types/state.types";
+import {TableTypeEnum} from "./types/table.types";
 
 const stasInit: StasState = {
     state: StasStateEnum.READY,
@@ -6,6 +8,10 @@ const stasInit: StasState = {
         name: "",
         personnelNumber: ""
     },
+    table: {
+        type: TableTypeEnum.INIT,
+        query: undefined
+    }
 }
 const initialStore: StasState[] = [{...stasInit}, {...stasInit}, {...stasInit}]
 
@@ -21,6 +27,10 @@ export const stasReducer = (state: StasState[] = initialStore, action: StasActio
 
         case StasStateActionTypes.RESET_WORKER:
             newState[action.stasIndex].worker = {name: '', personnelNumber: ''};
+            return newState;
+
+        case StasStateActionTypes.SET_TABLE:
+            newState[action.stasIndex].table = action.table;
             return newState;
 
         default:

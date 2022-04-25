@@ -1,24 +1,21 @@
+import {Worker} from "./types/worker.types";
+import {TableQuery} from "./types/table.types";
+import {StasStateEnum} from "./types/state.types";
+
 // state => StasState[] - stas 1, stas 2..
 export interface StasState {
-    worker: Worker
     state: StasStateEnum,
-}
-
-export interface Worker {
-    name: string,
-    personnelNumber: string
-}
-export enum StasStateEnum {
-    READY = "READY",
-    GO = "GO",
-    WAIT = "WAIT",
+    worker: Worker,
+    table: TableQuery
 }
 
 
 export enum StasStateActionTypes {
     SET_WORKER = "SET_WORKER",
     RESET_WORKER = "RESET_WORKER",
+    SET_TABLE = "SET_TABLE"
 }
+
 /**
  * Actions
  */
@@ -31,4 +28,10 @@ export interface ResetWorkerAction {
     type: StasStateActionTypes.RESET_WORKER,
     stasIndex: number
 }
-export type StasAction = ChangeWorkerAction | ResetWorkerAction;
+export interface SetTableAction {
+    type: StasStateActionTypes.SET_TABLE,
+    stasIndex: number,
+    table: TableQuery
+}
+
+export type StasAction = ChangeWorkerAction | ResetWorkerAction | SetTableAction;

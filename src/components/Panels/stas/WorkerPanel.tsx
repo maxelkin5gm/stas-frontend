@@ -4,12 +4,13 @@ import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {useTypeDispatch} from "../../../hooks/useTypeDispatch";
 
 import {WorkerService} from "../../../API/WorkerService";
-import {StasStateActionTypes, Worker} from "../../../store/stasReducer/stasReducer.type";
+import {StasStateActionTypes} from "../../../store/stasReducer/stasReducer.type";
 import InputCustom from "../../Input/InputCustom";
-import {TableStateActionTypes, TableTypeEnum} from "../../../store/tableReducer/tableReducer.type";
 import {AppStateActionTypes} from "../../../store/appReducer/appReducer.type";
 import SelectWorkerModal from "../../Modals/SelectWorkerModal";
 import {useLoader} from "../../../hooks/useLoader";
+import {Worker} from "../../../store/stasReducer/types/worker.types";
+import {TableTypeEnum} from "../../../store/stasReducer/types/table.types";
 
 interface WorkerPanelProps {
     stasIndex: number
@@ -26,15 +27,17 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
     const dispatch = useTypeDispatch();
 
     async function selectByNameHandler() {
-        const workers = await WorkerService.findAllByName(nameInputState[0])
+        const workers: Worker[] | null = await WorkerService.findAllByName(nameInputState[0])
 
-        if (!workers || workers.length === 0)
+        if (!workers || workers.length === 0) {
             dispatch({
                 type: AppStateActionTypes.SET_ERROR_MODAL,
                 visible: true,
                 title: "Ошибка",
                 text: "Сотрудника с таким ФИО не найдено"
             })
+            return;
+        }
 
         if (workers.length === 1)
             dispatch({type: StasStateActionTypes.SET_WORKER, worker: workers[0], stasIndex})
@@ -44,7 +47,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
     }
 
     async function selectByNumberHandler() {
-        const worker = await WorkerService.findByPersonnelNumber(numberInputState[0])
+        const worker: Worker | null = await WorkerService.findByPersonnelNumber(numberInputState[0])
 
         if (!worker)
             dispatch({
@@ -63,10 +66,11 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
 
     function tableHandler() {
         dispatch({
-            type: TableStateActionTypes.SET_WORKER_TABLE,
+            type: StasStateActionTypes.SET_TABLE,
             stasIndex: stasIndex,
             table: {
-                type: TableTypeEnum.WORKER
+                type: TableTypeEnum.WORKER,
+                query: worker
             }
         })
     }

@@ -1,18 +1,16 @@
-import {TableState, TableTypeEnum} from "../../../../store/tableReducer/tableReducer.type";
 import {WorkerService} from "../../../../API/WorkerService";
-import {Worker} from "../../../../store/stasReducer/stasReducer.type";
 import {workerColumns} from "./columns/workerColumns";
+import {TableQuery, TableTypeEnum} from "../../../../store/stasReducer/types/table.types";
 
 
-
-export async function fillTable(tableInfo: TableState, worker: Worker, setTableState: any) {
+export async function fillTable({type, query}: TableQuery, setTableState: any) {
     try {
-        switch (tableInfo.type) {
+        switch (type) {
 
             case TableTypeEnum.WORKER:
                 setTableState({
                     columns: workerColumns,
-                    data: await WorkerService.getDataByPersonnelNumber(worker.personnelNumber)
+                    data: await WorkerService.getDataByPersonnelNumber(query.personnelNumber)
                 })
                 return;
 

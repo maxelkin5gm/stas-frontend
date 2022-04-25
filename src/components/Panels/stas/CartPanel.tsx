@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 
-import TableCustom from "../../Table/TableCustom";
+import MainTable from "../../Table/MainTable";
 import {Button} from "antd";
 import {fillTable} from "./table/fillTable";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
@@ -10,8 +10,7 @@ interface CartPanelProps {
 }
 
 const CartPanel = ({stasIndex}: CartPanelProps) => {
-    const tableInfo = useTypeSelector(state => state.tableList[stasIndex])
-    const worker = useTypeSelector(state => state.stasList[stasIndex].worker)
+    const tableQuery = useTypeSelector(state => state.stasList[stasIndex].table)
 
     const [tableState, setTableState] = useState({
         columns: [],
@@ -19,14 +18,14 @@ const CartPanel = ({stasIndex}: CartPanelProps) => {
     })
 
     useEffect(() => {
-        fillTable(tableInfo, worker, setTableState)
-    }, [tableInfo, worker])
+        fillTable(tableQuery, setTableState)
+    }, [tableQuery])
 
 
     return (
         <>
             <div style={{minHeight: "150px", overflow: "auto", border: "1px solid black"}}>
-                <TableCustom data={tableState.data} columns={tableState.columns}/>
+                <MainTable data={tableState.data} columns={tableState.columns}/>
             </div>
 
 
