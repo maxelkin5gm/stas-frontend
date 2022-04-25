@@ -9,42 +9,52 @@ import InputCustom from "../../Input/InputCustom";
 import {TableStateActionTypes, TableTypeEnum} from "../../../store/tableReducer/tableReducer.type";
 import {AppStateActionTypes} from "../../../store/appReducer/appReducer.type";
 import SelectWorkerModal from "../../Modals/SelectWorkerModal";
+import {useLoader} from "../../../hooks/useLoader";
 
 interface WorkerPanelProps {
     stasIndex: number
 }
 
+
+// todo autocomplete and warning on void inputs
 const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
 
-    const [modal, setModal] = useState({visible: false, workers: [] as Worker[]});
+    const [modalState, setModalState] = useState({visible: false, workers: [] as Worker[]});
     const numberInputState = useState("");
     const nameInputState = useState("");
     const worker = useTypeSelector(state => state.stasList[stasIndex].worker);
     const dispatch = useTypeDispatch();
 
     async function selectByNameHandler() {
-        dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: true})
-        const name = nameInputState[0];
-
-        const workers = await WorkerService.findAllByName(name)
+        const workers = await WorkerService.findAllByName(nameInputState[0])
 
         if (!workers || workers.length === 0)
-            dispatch({type: AppStateActionTypes.SET_ERROR_MODAL, visible: true, text: "sosi"})
+            dispatch({
+                type: AppStateActionTypes.SET_ERROR_MODAL,
+                visible: true,
+                title: "Ошибка",
+                text: "Сотрудника с таким ФИО не найдено"
+            })
 
         if (workers.length === 1)
-            dispatch({type: StasStateActionTypes.CHANGE_WORKER, worker, stasIndex})
-        else setModal({visible: true, workers: workers})
+            dispatch({type: StasStateActionTypes.SET_WORKER, worker: workers[0], stasIndex})
 
-
-        // dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: false})
+        if (workers.length > 1)
+            setModalState({visible: true, workers})
     }
 
     async function selectByNumberHandler() {
-        dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: false})
+        const worker = await WorkerService.findByPersonnelNumber(numberInputState[0])
 
-        const personnelNumber = numberInputState[0];
-        const worker = await WorkerService.findByPersonnelNumber(personnelNumber)
-        dispatch({type: StasStateActionTypes.CHANGE_WORKER, worker, stasIndex})
+        if (!worker)
+            dispatch({
+                type: AppStateActionTypes.SET_ERROR_MODAL,
+                visible: true,
+                title: "Ошибка",
+                text: "Сотрудника с таким ФИО не найдено"
+            });
+        else
+            dispatch({type: StasStateActionTypes.SET_WORKER, worker, stasIndex});
     }
 
     function resetHandler() {
@@ -63,14 +73,12 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
 
     return (
         <>
-            <SelectWorkerModal modal={modal} onClose={() => setModal({...modal, visible: false})}/>
-
             <div>
                 <InputCustom placeholder={"Табельный номер"} type={"number"} valueState={numberInputState}/>
             </div>
 
             <div>
-                <Button type="primary" size="middle" onClick={selectByNumberHandler} key={stasIndex}>Выбрать</Button>
+                <Button type="primary" size="middle" onClick={useLoader(selectByNumberHandler)} key={stasIndex}>Выбрать</Button>
             </div>
 
             <div style={{gridRow: "span 2"}}>
@@ -82,7 +90,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             </div>
 
             <div>
-                <Button type="primary" size="middle" onClick={selectByNameHandler}>Выбрать</Button>
+                <Button type="primary" size="middle" onClick={useLoader(selectByNameHandler)}>Выбрать</Button>
             </div>
 
             <div style={{textAlign: "center"}}>
@@ -97,6 +105,11 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
                 <Button style={{width: "100%"}} type="primary" size="middle" onClick={tableHandler}>Показать выданные
                     СТО</Button>
             </div>
+
+            <SelectWorkerModal modalState={modalState}
+                               onClose={() => setModalState({...modalState, visible: false})}
+                               stasIndex={stasIndex}
+            />
         </>
     );
 };

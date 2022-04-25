@@ -25,7 +25,7 @@ const CartPanel = ({stasIndex}: CartPanelProps) => {
 
     return (
         <>
-            <div style={{minHeight: "200px", overflow: "auto", border: "1px solid black"}}>
+            <div style={{minHeight: "150px", overflow: "auto", border: "1px solid black"}}>
                 <TableCustom data={tableState.data} columns={tableState.columns}/>
             </div>
 

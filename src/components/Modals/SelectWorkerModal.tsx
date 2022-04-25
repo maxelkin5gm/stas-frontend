@@ -1,44 +1,54 @@
 import React from 'react';
-import {Button} from "antd";
+import {useTypeDispatch} from "../../hooks/useTypeDispatch";
 
 import BaseModal from "./BaseModal";
-import {Worker} from "../../store/stasReducer/stasReducer.type";
-import cl from "./SelectWorkerModal.module.scss"
+import {StasStateActionTypes, Worker} from "../../store/stasReducer/stasReducer.type";
+import cl from "./SelectWorkerModal.module.scss";
 
 interface SelectWorkerModalProps {
-    modal: {
+    modalState: {
         visible: boolean,
         workers: Worker[]
     }
 
-    onClose: () => void
+    onClose: () => void,
+
+    stasIndex: number
 }
 
-const SelectWorkerModal = ({modal, onClose}: SelectWorkerModalProps) => {
+const SelectWorkerModal = ({modalState, onClose, stasIndex}: SelectWorkerModalProps) => {
+    const dispatch = useTypeDispatch();
 
-    function closeHandler() {
+    if (!modalState.visible) return null;
 
+    const name = modalState.workers[0].name;
+
+    function selectHandler(e: React.MouseEvent<HTMLOptionElement, MouseEvent>) {
+        const personnelNumber = e.currentTarget.value;
+        dispatch({
+            type: StasStateActionTypes.SET_WORKER,
+            stasIndex: stasIndex,
+            worker: {
+                name,
+                personnelNumber
+            }
+        })
+        onClose();
     }
-
-    function selectHandler(e: React.MouseEvent<HTMLSelectElement, MouseEvent>) {
-        const option = e.target as EventTarget & HTMLSelectElement;
-        console.log(option.value);
-    }
-
-    if (!modal.visible) return null;
 
     return (
-        <BaseModal>
+        <BaseModal onClose={onClose}>
             <div className={cl.selectWorkerModal}>
 
-                <h2>Найдено больше одного работника с ФИО: <span>Елькин М.В.</span></h2>
+                <h2>Найдено более одного сотрудника с ФИО: <span>{name}</span></h2>
 
-                <select onDoubleClick={selectHandler} multiple>
-                    <option value="228">228</option>
-                    <option value="229">229</option>
+                <select multiple>
+                    {modalState.workers.map((item) =>
+                        <option onDoubleClick={selectHandler} value={item.personnelNumber}
+                                key={item.personnelNumber}>{item.personnelNumber}</option>
+                    )}
                 </select>
 
-                <Button danger type="default" size="large" onClick={onClose}>Закрыть</Button>
             </div>
         </BaseModal>
     );

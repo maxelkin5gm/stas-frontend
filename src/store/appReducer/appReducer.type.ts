@@ -3,12 +3,13 @@ export interface AppState {
     isLoading: boolean
     errorModal: {
         visible: boolean,
-        text: string
+        title: string,
+        text: string,
     }
 }
 
 export enum AppStateActionTypes {
-    CHANGE_TAB = "CHANGE_TAB",
+    SET_TAB = "SET_TAB",
     SET_LOADING = "SET_LOADING",
     SET_ERROR_MODAL = "SET_ERROR_MODAL"
 }
@@ -16,7 +17,7 @@ export enum AppStateActionTypes {
  * Actions
  */
 export interface ChangeTabAction {
-    type: AppStateActionTypes.CHANGE_TAB,
+    type: AppStateActionTypes.SET_TAB,
     tabIndex: number
 }
 export interface SetLoadingAction {
@@ -26,6 +27,7 @@ export interface SetLoadingAction {
 export interface SetErrorModalAction {
     type: AppStateActionTypes.SET_ERROR_MODAL,
     visible: boolean,
+    title: string,
     text: string
 }
 export type AppAction = ChangeTabAction | SetLoadingAction | SetErrorModalAction;

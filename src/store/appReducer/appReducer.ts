@@ -5,6 +5,7 @@ const initialStore: AppState = {
     isLoading: false,
     errorModal: {
         visible: false,
+        title: "",
         text: ""
     }
 }
@@ -12,7 +13,7 @@ const initialStore: AppState = {
 export const appReducer = (state: AppState = initialStore, action: AppAction): AppState => {
     switch (action.type) {
 
-        case AppStateActionTypes.CHANGE_TAB:
+        case AppStateActionTypes.SET_TAB:
             return {
                 ...state,
                 tabIndex: action.tabIndex
@@ -29,6 +30,7 @@ export const appReducer = (state: AppState = initialStore, action: AppAction): A
                 ...state,
                 errorModal: {
                     visible: action.visible,
+                    title: action.title,
                     text: action.text
                 }
             }

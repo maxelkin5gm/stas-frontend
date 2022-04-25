@@ -16,14 +16,14 @@ export enum StasStateEnum {
 
 
 export enum StasStateActionTypes {
-    CHANGE_WORKER = "CHANGE_WORKER",
+    SET_WORKER = "SET_WORKER",
     RESET_WORKER = "RESET_WORKER",
 }
 /**
  * Actions
  */
 export interface ChangeWorkerAction {
-    type: StasStateActionTypes.CHANGE_WORKER,
+    type: StasStateActionTypes.SET_WORKER,
     stasIndex: number,
     worker: Worker
 }

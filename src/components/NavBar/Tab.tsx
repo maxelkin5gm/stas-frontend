@@ -22,7 +22,7 @@ const Tab = ({children, className, classActive, tabIndex}: TabProps) => {
         <button
             className={classNameCalc}
             onClick={() => dispatch({
-                type: AppStateActionTypes.CHANGE_TAB,
+                type: AppStateActionTypes.SET_TAB,
                 tabIndex: tabIndex
             })}
         >{children}</button>

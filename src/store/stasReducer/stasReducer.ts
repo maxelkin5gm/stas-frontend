@@ -15,7 +15,7 @@ export const stasReducer = (state: StasState[] = initialStore, action: StasActio
 
     switch (action.type) {
 
-        case StasStateActionTypes.CHANGE_WORKER:
+        case StasStateActionTypes.SET_WORKER:
             newState[action.stasIndex].worker = action.worker;
             return newState;
 

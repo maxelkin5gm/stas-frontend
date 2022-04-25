@@ -9,6 +9,10 @@ export class WorkerService {
         return [
             {
                 name: "Елькин",
+                personnelNumber: "1"
+            },
+            {
+                name: "Елькин",
                 personnelNumber: "228"
             },
             {
@@ -19,6 +23,8 @@ export class WorkerService {
     }
 
     static async findByPersonnelNumber(personnelNumber: string) {
+        return null;
+
         return {
             name: "Елькин",
             personnelNumber: "228"
