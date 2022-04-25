@@ -1,0 +1,7 @@
+.ant-table-selection-column {
+    display: none !important;
+}
+
+.ant-table-wrapper tbody * {
+    cursor: pointer !important;
+}

@@ -1,12 +1,15 @@
 import React from 'react';
 
 import {Button} from "antd";
+import {useTypeSelector} from "../../../hooks/useTypeSelector";
 
 interface ActionPanelProps {
     stasIndex: number,
 }
 
 const ActionPanel = ({stasIndex}: ActionPanelProps) => {
+    let {cellNumber, side} = useTypeSelector(state => state.stasList[stasIndex].selectedCell)
+
     return (
         <>
             <div>
@@ -14,7 +17,10 @@ const ActionPanel = ({stasIndex}: ActionPanelProps) => {
             </div>
 
             <div>
-                <h3>Выбрана ячейка: <span style={{border: "1px solid black", padding: 5}}>228</span></h3>
+                {cellNumber && side
+                    ? <h3>Выбрано: <span style={{border: "1px solid black", padding: 5}}>{cellNumber} {side}</span></h3>
+                    : <h3>Ячейка не выбрана</h3>
+                }
             </div>
 
             <div>

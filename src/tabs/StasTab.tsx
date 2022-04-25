@@ -3,7 +3,7 @@ import {useTypeSelector} from "../hooks/useTypeSelector";
 
 import cl from "./StasTab.module.scss"
 import WorkerPanel from "../components/Panels/stas/WorkerPanel";
-import TablePanel from "../components/Panels/stas/table/TablePanel";
+import TablePanel from "../components/Panels/stas/TablePanel";
 import DetailPanel from "../components/Panels/stas/DetailPanel";
 import StoPanel from "../components/Panels/stas/StoPanel";
 import CellPanel from "../components/Panels/stas/CellPanel";

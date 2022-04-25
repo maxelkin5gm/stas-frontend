@@ -11,6 +11,10 @@ const stasInit: StasState = {
     table: {
         type: TableTypeEnum.INIT,
         query: undefined
+    },
+    selectedCell: {
+        cellNumber: null,
+        side: null,
     }
 }
 const initialStore: StasState[] = [{...stasInit}, {...stasInit}, {...stasInit}]
@@ -31,6 +35,10 @@ export const stasReducer = (state: StasState[] = initialStore, action: StasActio
 
         case StasStateActionTypes.SET_TABLE:
             newState[action.stasIndex].table = action.table;
+            return newState;
+
+        case StasStateActionTypes.SET_SELECTED_CELL:
+            newState[action.stasIndex].selectedCell = action.selectedCell;
             return newState;
 
         default:

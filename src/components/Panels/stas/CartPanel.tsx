@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 
-import MainTable from "../../Table/MainTable";
+import MainTable from "../../Tables/MainTable";
 import {Button} from "antd";
-import {fillTable} from "./table/fillTable";
+import {fillTable} from "../../Tables/fillTable";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 
 interface CartPanelProps {
@@ -10,22 +10,22 @@ interface CartPanelProps {
 }
 
 const CartPanel = ({stasIndex}: CartPanelProps) => {
-    const tableQuery = useTypeSelector(state => state.stasList[stasIndex].table)
+    // const tableQuery = useTypeSelector(state => state.stasList[stasIndex].table)
+    //
+    // const [tableState, setTableState] = useState({
+    //     columns: [],
+    //     data: []
+    // })
 
-    const [tableState, setTableState] = useState({
-        columns: [],
-        data: []
-    })
-
-    useEffect(() => {
-        fillTable(tableQuery, setTableState)
-    }, [tableQuery])
+    // useEffect(() => {
+    //     fillTable(tableQuery, setTableState)
+    // }, [tableQuery])
 
 
     return (
         <>
             <div style={{minHeight: "150px", overflow: "auto", border: "1px solid black"}}>
-                <MainTable data={tableState.data} columns={tableState.columns}/>
+                {/*<MainTable data={tableState.data} columns={tableState.columns}/>*/}
             </div>
 
 

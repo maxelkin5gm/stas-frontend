@@ -8,10 +8,6 @@ export class WorkerService {
         return [
             {
                 name: "Елькин",
-                personnelNumber: "1"
-            },
-            {
-                name: "Елькин",
                 personnelNumber: "228"
             },
             {
@@ -32,6 +28,9 @@ export class WorkerService {
 
     static async getDataByPersonnelNumber(personnelNumber: string) {
         const res = await fetch("/data.json")
+        if (res.status !== 200) {
+            throw Error("gggggg")
+        }
         const data = await res.json()
         return data;
 
