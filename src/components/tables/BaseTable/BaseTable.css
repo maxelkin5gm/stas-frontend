@@ -9,3 +9,7 @@
 .ant-table-cell-row-hover {
     background: rgba(0, 0, 0, 0.1) !important;
 }
+
+.ant-table-content table {
+    background: white;
+}
