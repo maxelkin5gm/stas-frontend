@@ -15,7 +15,8 @@ const stasInit: StasState = {
     selectedCell: {
         cellNumber: null,
         side: null,
-    }
+    },
+    cart: []
 }
 const initialStore: StasState[] = [{...stasInit}, {...stasInit}, {...stasInit}]
 
@@ -24,6 +25,9 @@ export const stasReducer = (state: StasState[] = initialStore, action: StasActio
     const newState = [...state];
 
     switch (action.type) {
+        case StasStateActionTypes.SET_STATE:
+            newState[action.stasIndex].state = action.state;
+            return newState;
 
         case StasStateActionTypes.SET_WORKER:
             newState[action.stasIndex].worker = action.worker;
@@ -39,6 +43,10 @@ export const stasReducer = (state: StasState[] = initialStore, action: StasActio
 
         case StasStateActionTypes.SET_SELECTED_CELL:
             newState[action.stasIndex].selectedCell = action.selectedCell;
+            return newState;
+
+        case StasStateActionTypes.SET_CART:
+            newState[action.stasIndex].cart = action.cart;
             return newState;
 
         default:

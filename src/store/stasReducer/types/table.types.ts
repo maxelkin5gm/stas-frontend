@@ -1,11 +1,13 @@
 import {Worker} from "./worker.types";
+import {Cart} from "./cart.types";
 
 export enum TableTypeEnum {
     INIT = "INIT",
     WORKER = "WORKER",
     DETAIL = "DETAIL",
     STO = "STO",
-    CELL = "CELL"
+    CELL = "CELL",
+    CART = "CART",
 }
 
 /**
@@ -15,10 +17,12 @@ interface InitTableQuery {
     type: TableTypeEnum.INIT
     query: undefined
 }
+
 interface WorkerTableQuery {
     type: TableTypeEnum.WORKER,
     query: Worker
 }
+
 interface DetailTableQuery {
     type: TableTypeEnum.DETAIL,
     query: {
@@ -26,12 +30,14 @@ interface DetailTableQuery {
         operationNumber?: string
     }
 }
+
 interface StoTableQuery {
     type: TableTypeEnum.STO,
     query: {
         sto: string
     }
 }
+
 interface CellTableQuery {
     type: TableTypeEnum.CELL,
     query: {
@@ -40,4 +46,15 @@ interface CellTableQuery {
     }
 }
 
-export type TableQuery = InitTableQuery | WorkerTableQuery | DetailTableQuery | StoTableQuery | CellTableQuery;
+interface CartTableQuery {
+    type: TableTypeEnum.CART,
+    query: Cart[]
+}
+
+export type TableQuery =
+    InitTableQuery
+    | WorkerTableQuery
+    | DetailTableQuery
+    | StoTableQuery
+    | CellTableQuery
+    | CartTableQuery;

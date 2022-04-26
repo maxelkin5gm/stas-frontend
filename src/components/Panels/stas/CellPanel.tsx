@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
 import {Button, Radio} from "antd";
 import InputCustom from "../../Input/InputCustom";
+import {useTypeSelector} from "../../../hooks/useTypeSelector";
+import {StasStateEnum} from "../../../store/stasReducer/types/state.types";
 
 interface CellPanelProps {
     stasIndex: number,
 }
 
 const CellPanel = ({stasIndex}: CellPanelProps) => {
+    const stasState = useTypeSelector(state => state.stasList[stasIndex].state);
     const cellInputState = useState("");
     const [radioValue, setRadioValue] = useState("ПРАВО");
 
@@ -24,11 +27,11 @@ const CellPanel = ({stasIndex}: CellPanelProps) => {
             </div>
 
             <div style={{gridColumn: "span 2"}}>
-                <Button type="primary" size="middle">Показать</Button>
+                <Button disabled={stasState !== StasStateEnum.READY} type="primary" size="middle">Показать</Button>
             </div>
 
             <div style={{gridColumn: "span 2"}}>
-                <Button type="primary" size="middle">Показать привезенную</Button>
+                <Button disabled={stasState !== StasStateEnum.WAIT} type="primary" size="middle">Показать привезенную</Button>
             </div>
         </>
 

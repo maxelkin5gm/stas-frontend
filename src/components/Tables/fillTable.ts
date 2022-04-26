@@ -1,6 +1,7 @@
 import {WorkerService} from "../../API/WorkerService";
-import {receivedStoTableColumns} from "./columns/receivedStoTableColumns";
+import {receivedStoColumns} from "./columns/receivedStoColumns";
 import {TableQuery, TableTypeEnum} from "../../store/stasReducer/types/table.types";
+import {cartColumns} from "./columns/cartColumns";
 
 
 export async function fillTable({type, query}: TableQuery, setTableState: Function) {
@@ -8,12 +9,19 @@ export async function fillTable({type, query}: TableQuery, setTableState: Functi
 
         case TableTypeEnum.WORKER:
             setTableState({
-                columns: receivedStoTableColumns,
+                columns: receivedStoColumns,
                 data: await WorkerService.getDataByPersonnelNumber(query.personnelNumber)
             })
             return;
 
         case TableTypeEnum.DETAIL:
+            return;
+
+        case TableTypeEnum.CART:
+            setTableState({
+                columns: cartColumns,
+                data: query
+            })
             return;
 
     }

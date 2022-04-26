@@ -43,7 +43,7 @@ const StasTab = ({stasIndex}: StasTabProps) => {
                 <ActionPanel stasIndex={stasIndex} />
             </div>
             <div className={cl.status}>
-                <StatusPanel />
+                <StatusPanel stasIndex={stasIndex} />
             </div>
         </div>
     );

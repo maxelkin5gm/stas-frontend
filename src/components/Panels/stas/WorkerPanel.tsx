@@ -11,6 +11,7 @@ import SelectWorkerModal from "../../Modals/SelectWorkerModal";
 import {useLoader} from "../../../hooks/useLoader";
 import {Worker} from "../../../store/stasReducer/types/worker.types";
 import {TableTypeEnum} from "../../../store/stasReducer/types/table.types";
+import {StasStateEnum} from "../../../store/stasReducer/types/state.types";
 
 interface WorkerPanelProps {
     stasIndex: number
@@ -24,6 +25,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
     const numberInputState = useState("");
     const nameInputState = useState("");
     const worker = useTypeSelector(state => state.stasList[stasIndex].worker);
+    const stasState = useTypeSelector(state => state.stasList[stasIndex].state);
     const dispatch = useTypeDispatch();
 
     async function selectByNameHandler() {
@@ -82,7 +84,8 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             </div>
 
             <div>
-                <Button type="primary" size="middle" onClick={useLoader(selectByNumberHandler)} key={stasIndex}>Выбрать</Button>
+                <Button type="primary" size="middle" onClick={useLoader(selectByNumberHandler)}
+                        key={stasIndex}>Выбрать</Button>
             </div>
 
             <div style={{gridRow: "span 2"}}>
@@ -106,8 +109,8 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             </div>
 
             <div style={{gridColumn: "span 2"}}>
-                <Button style={{width: "100%"}} type="primary" size="middle" onClick={tableHandler}>Показать выданные
-                    СТО</Button>
+                <Button disabled={stasState !== StasStateEnum.READY} style={{width: "100%"}} type="primary"
+                        size="middle" onClick={tableHandler}>Показать выданные СТО</Button>
             </div>
 
             <SelectWorkerModal modalState={modalState}

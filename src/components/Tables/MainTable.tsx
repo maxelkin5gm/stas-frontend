@@ -7,10 +7,11 @@ import {useTypeDispatch} from "../../hooks/useTypeDispatch";
 import DoubleClickRowModal from "../Modals/DoubleClickRowModal";
 
 interface MainTableProps {
-    stasIndex: number
+    stasIndex: number,
+    isLoading?: boolean
 }
 
-const MainTable = ({stasIndex}: MainTableProps) => {
+const MainTable = ({stasIndex, isLoading}: MainTableProps) => {
     const tableQuery = useTypeSelector(state => state.stasList[stasIndex].table);
     const dispatch = useTypeDispatch();
     const [modalState, setModalState] = useState({
@@ -18,10 +19,10 @@ const MainTable = ({stasIndex}: MainTableProps) => {
         row: {} as any
     })
 
-    function onClickRowHandler(row: any, index: number | undefined) {
+    function onClickRowHandler(row: any) {
         dispatch({
             type: StasStateActionTypes.SET_SELECTED_CELL,
-            stasIndex: 0,
+            stasIndex,
             selectedCell: {
                 cellNumber: row.cellNumber,
                 side: row.side
@@ -30,17 +31,18 @@ const MainTable = ({stasIndex}: MainTableProps) => {
     }
 
     function onDoubleClickHandler(row: any) {
-        console.log("dbl click")
-        console.log(row)
         setModalState({row, visible: true})
     }
 
     return (
         <>
-            <BaseTable onClickRow={onClickRowHandler} onDoubleClickRow={onDoubleClickHandler} tableQuery={tableQuery}/>
+            <BaseTable isLoading={isLoading} onClickRow={onClickRowHandler} onDoubleClickRow={onDoubleClickHandler}
+                       tableQuery={tableQuery}/>
+
 
             <DoubleClickRowModal stasIndex={stasIndex} modalState={modalState}
                                  onClose={() => setModalState({...modalState, visible: false})}/>
+
         </>
     );
 };

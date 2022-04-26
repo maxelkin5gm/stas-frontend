@@ -1,26 +1,38 @@
 [
   {
     "key": 1,
-    "sto": "sto",
+    "sto": "sto1",
     "received": "received",
-    "detail": "detail",
-    "operationNumber": "operationNumber",
+    "detail": "detail1",
+    "operationNumber": "operationNumber1",
     "date": "date",
     "side": "ПРАВО",
     "cellNumber": 228,
     "status": "status",
-    "note": "note"
+    "note": "note1"
   },
   {
     "key": 2,
-    "sto": "sto",
+    "sto": "sto2",
     "received": "received",
-    "detail": "detail",
-    "operationNumber": "operationNumber",
+    "detail": "detail2",
+    "operationNumber": "operationNumber2",
     "date": "date",
     "side": "ЛЕВО",
     "cellNumber": 50,
     "status": "status",
-    "note": "note"
+    "note": "note2"
+  },
+  {
+    "key": 3,
+    "sto": "sto3",
+    "received": "received",
+    "detail": "detail2",
+    "operationNumber": "operationNumber2",
+    "date": "date",
+    "side": "ЛЕВО",
+    "cellNumber": 50,
+    "status": "status",
+    "note": "note3"
   }
 ]

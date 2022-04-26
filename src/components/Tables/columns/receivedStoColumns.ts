@@ -1,4 +1,4 @@
-export const receivedStoTableColumns = [
+export const receivedStoColumns = [
     {
         title: 'Обозначение СТО',
         dataIndex: 'sto',

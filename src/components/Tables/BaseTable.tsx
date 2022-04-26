@@ -2,20 +2,19 @@ import React, {useEffect, useState} from 'react';
 import {Table} from "antd";
 import {useTypeDispatch} from "../../hooks/useTypeDispatch";
 
-
 import {TableQuery} from "../../store/stasReducer/types/table.types";
 import {fillTable} from "./fillTable";
 import {AppStateActionTypes} from "../../store/appReducer/appReducer.type";
 import "./BaseTable.css"
-import {StasStateActionTypes} from "../../store/stasReducer/stasReducer.type";
 
 interface BaseTableProps {
     tableQuery: TableQuery,
-    onClickRow: (row: any, index: number | undefined) => void
-    onDoubleClickRow: (row:any, index: number | undefined) => void
+    onClickRow?: (row: any, index: number | undefined) => void
+    onDoubleClickRow?: (row:any, index: number | undefined) => void,
+    isLoading?: boolean
 }
 
-const BaseTable = ({tableQuery, onClickRow, onDoubleClickRow}: BaseTableProps) => {
+const BaseTable = ({tableQuery, onClickRow, onDoubleClickRow, isLoading}: BaseTableProps) => {
     const dispatch = useTypeDispatch();
     const [selectedRow, setSelectedRow] = useState(0)
     const [tableState, setTableState] = useState({
@@ -26,11 +25,15 @@ const BaseTable = ({tableQuery, onClickRow, onDoubleClickRow}: BaseTableProps) =
     function onRow(row: any, index: number | undefined) {
         return {
             onClick: () => {
-                setSelectedRow(row.key)
-                onClickRow(row, index)
+                if (onClickRow) {
+                    setSelectedRow(row.key)
+                    onClickRow(row, index)
+                }
             },
             onDoubleClick: () => {
-                onDoubleClickRow(row, index)
+                if (onDoubleClickRow) {
+                    onDoubleClickRow(row, index)
+                }
             },
         };
     }
@@ -45,12 +48,9 @@ const BaseTable = ({tableQuery, onClickRow, onDoubleClickRow}: BaseTableProps) =
             }))
     }, [tableQuery, dispatch])
 
-    if (tableState.data.length === 0) {
-
-    }
-
     return (
         <Table
+            loading={isLoading}
             pagination={false}
             size={"small"}
 
