@@ -11,9 +11,7 @@ interface SelectWorkerModalProps {
         visible: boolean,
         workers: Worker[]
     }
-
     onClose: () => void,
-
     stasIndex: number
 }
 
@@ -42,6 +40,7 @@ const SelectWorkerModal = ({modalState, onClose, stasIndex}: SelectWorkerModalPr
             <div className={cl.selectWorkerModal}>
 
                 <h2>Найдено более одного сотрудника с ФИО: <span>{name}</span></h2>
+                <h3>Выберите табельный номер</h3>
 
                 <select multiple>
                     {modalState.workers.map((item) =>

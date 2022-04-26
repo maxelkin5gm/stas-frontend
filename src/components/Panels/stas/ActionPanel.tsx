@@ -30,7 +30,7 @@ const ActionPanel = ({stasIndex}: ActionPanelProps) => {
         }, 2000)
     }
 
-    function giveCellHandler() {
+    async function giveCellHandler() {
         dispatch({
             type: StasStateActionTypes.SET_STATE,
             stasIndex,

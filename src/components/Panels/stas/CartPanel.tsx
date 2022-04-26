@@ -17,11 +17,11 @@ const CartPanel = ({stasIndex}: CartPanelProps) => {
 
     let disabled = true;
     if (stasState === StasStateEnum.WAIT) disabled = false;
-    else dispatch({
-        type: StasStateActionTypes.SET_CART,
-        stasIndex,
-        cart: []
-    })
+    // else dispatch({
+    //     type: StasStateActionTypes.SET_CART,
+    //     stasIndex,
+    //     cart: []
+    // })
 
     return (
         <>

@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
+import {useTypeSelector} from "../../hooks/useTypeSelector";
+import {useTypeDispatch} from "../../hooks/useTypeDispatch";
 
 import BaseTable from "./BaseTable";
-import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {StasStateActionTypes} from "../../store/stasReducer/stasReducer.type";
-import {useTypeDispatch} from "../../hooks/useTypeDispatch";
 import DoubleClickRowModal from "../Modals/DoubleClickRowModal";
 
 interface MainTableProps {
@@ -14,6 +14,7 @@ interface MainTableProps {
 const MainTable = ({stasIndex, isLoading}: MainTableProps) => {
     const tableQuery = useTypeSelector(state => state.stasList[stasIndex].table);
     const dispatch = useTypeDispatch();
+
     const [modalState, setModalState] = useState({
         visible: false,
         row: {} as any

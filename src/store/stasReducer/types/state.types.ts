@@ -1,5 +1,5 @@
 export enum StasStateEnum {
-    READY = "READY",
-    GO = "GO",
-    WAIT = "WAIT",
+    READY = "Готов",
+    GO = "В пути",
+    WAIT = "Ожидает",
 }

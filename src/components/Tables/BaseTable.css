@@ -5,3 +5,7 @@
 .ant-table-wrapper tbody * {
     cursor: pointer !important;
 }
+
+.ant-table-wrapper table {
+    background: white !important;
+}

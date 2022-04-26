@@ -50,6 +50,7 @@ const BaseTable = ({tableQuery, onClickRow, onDoubleClickRow, isLoading}: BaseTa
 
     return (
         <Table
+            tableLayout={"auto"}
             loading={isLoading}
             pagination={false}
             size={"small"}

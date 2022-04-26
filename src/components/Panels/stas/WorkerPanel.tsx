@@ -17,16 +17,15 @@ interface WorkerPanelProps {
     stasIndex: number
 }
 
-
-// todo autocomplete and warning on void inputs
 const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
+    const worker = useTypeSelector(state => state.stasList[stasIndex].worker);
+    const stasState = useTypeSelector(state => state.stasList[stasIndex].state);
+    const dispatch = useTypeDispatch();
 
     const [modalState, setModalState] = useState({visible: false, workers: [] as Worker[]});
     const numberInputState = useState("");
     const nameInputState = useState("");
-    const worker = useTypeSelector(state => state.stasList[stasIndex].worker);
-    const stasState = useTypeSelector(state => state.stasList[stasIndex].state);
-    const dispatch = useTypeDispatch();
+
 
     async function selectByNameHandler() {
         const workers: Worker[] | null = await WorkerService.findAllByName(nameInputState[0])

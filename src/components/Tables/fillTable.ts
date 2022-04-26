@@ -10,7 +10,7 @@ export async function fillTable({type, query}: TableQuery, setTableState: Functi
         case TableTypeEnum.WORKER:
             setTableState({
                 columns: receivedStoColumns,
-                data: await WorkerService.getDataByPersonnelNumber(query.personnelNumber)
+                data: await WorkerService.getReceivedStoByPersonnelNumber(query.personnelNumber)
             })
             return;
 

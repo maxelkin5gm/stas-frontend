@@ -10,12 +10,9 @@ interface TablePanelProps {
 const TablePanel = ({stasIndex}: TablePanelProps) => {
     const stasState = useTypeSelector(state => state.stasList[stasIndex].state)
 
-    let disabled = false;
-    if (stasState === StasStateEnum.GO) disabled = true
-
     return (
         <>
-            <MainTable stasIndex={stasIndex} isLoading={disabled}/>
+            <MainTable stasIndex={stasIndex} isLoading={stasState === StasStateEnum.GO}/>
         </>
     );
 };

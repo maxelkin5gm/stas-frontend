@@ -38,10 +38,12 @@ export const receivedStoColumns = [
         title: 'Статус',
         dataIndex: 'status',
         key: 'status',
+        ellipsis: true
     },
     {
         title: 'Примечания',
         dataIndex: 'note',
         key: 'note',
+        ellipsis: true
     },
 ];
