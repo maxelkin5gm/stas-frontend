@@ -1,5 +1,5 @@
 import React from 'react';
-import MainTable from "../../Tables/MainTable";
+import StasTable from "../../tables/StasTable";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {StasStateEnum} from "../../../store/stasReducer/types/state.types";
 
@@ -12,7 +12,7 @@ const TablePanel = ({stasIndex}: TablePanelProps) => {
 
     return (
         <>
-            <MainTable stasIndex={stasIndex} isLoading={stasState === StasStateEnum.GO}/>
+            <StasTable stasIndex={stasIndex} isLoading={stasState === StasStateEnum.GO}/>
         </>
     );
 };

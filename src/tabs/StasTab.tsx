@@ -2,14 +2,14 @@ import React from 'react';
 import {useTypeSelector} from "../hooks/useTypeSelector";
 
 import cl from "./StasTab.module.scss"
-import WorkerPanel from "../components/Panels/stas/WorkerPanel";
-import TablePanel from "../components/Panels/stas/TablePanel";
-import DetailPanel from "../components/Panels/stas/DetailPanel";
-import StoPanel from "../components/Panels/stas/StoPanel";
-import CellPanel from "../components/Panels/stas/CellPanel";
-import ActionPanel from "../components/Panels/stas/ActionPanel";
-import StatusPanel from "../components/Panels/stas/StatusPanel";
-import CartPanel from "../components/Panels/stas/CartPanel";
+import WorkerPanel from "../components/panels/stas/WorkerPanel";
+import TablePanel from "../components/panels/stas/TablePanel";
+import DetailPanel from "../components/panels/stas/DetailPanel";
+import StoPanel from "../components/panels/stas/StoPanel";
+import CellPanel from "../components/panels/stas/CellPanel";
+import ActionPanel from "../components/panels/stas/ActionPanel";
+import StatusPanel from "../components/panels/stas/StatusPanel";
+import CartPanel from "../components/panels/stas/CartPanel";
 
 interface StasTabProps {
     stasIndex: number,

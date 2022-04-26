@@ -11,7 +11,7 @@ import NavBar from "./components/NavBar/NavBar";
 import StasTab from "./tabs/StasTab";
 import SearchAllTab from "./tabs/SearchAllTab";
 import AdminTab from "./tabs/AdminTab";
-import ErrorModal from "./components/Modals/ErrorModal";
+import ErrorModal from "./components/modals/ErrorModal";
 
 const root = ReactDOM.createRoot(
     document.getElementById("root") as HTMLElement

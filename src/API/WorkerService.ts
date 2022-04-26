@@ -21,7 +21,17 @@ export class WorkerService {
         return null;
     }
 
-    static async getReceivedStoByPersonnelNumber(personnelNumber: string) {
+    static async findAllStoByNumber(personnelNumber: string) {
+        const res = await fetch("/data/worker.findAllStoByNumber.json")
+
+        if (res.status !== 200) throw Error("Произошла ошибка связи с сервером")
+
+        const data = await res.json();
+        return data;
+    }
+
+    // todo
+    static async findAllStoByNumberAndStas(personnelNumber: string, stasIndex: number) {
         const res = await fetch("/data/worker.getReceivedStoByPersonnelNumber.json")
 
         if (res.status !== 200) throw Error("Произошла ошибка связи с сервером")

@@ -1,5 +1,4 @@
 import {Worker} from "./worker.types";
-import {Cart} from "./cart.types";
 
 export enum TableTypeEnum {
     INIT = "INIT",
@@ -7,7 +6,6 @@ export enum TableTypeEnum {
     DETAIL = "DETAIL",
     STO = "STO",
     CELL = "CELL",
-    CART = "CART",
 }
 
 /**
@@ -46,15 +44,9 @@ interface CellTableQuery {
     }
 }
 
-interface CartTableQuery {
-    type: TableTypeEnum.CART,
-    query: Cart[]
-}
-
 export type TableQuery =
     InitTableQuery
     | WorkerTableQuery
     | DetailTableQuery
     | StoTableQuery
-    | CellTableQuery
-    | CartTableQuery;
+    | CellTableQuery;

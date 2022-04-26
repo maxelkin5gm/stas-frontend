@@ -56,7 +56,8 @@ const DoubleClickRowModal = ({modalState, onClose, stasIndex}: DoubleClickRowMod
                 stasIndex: stasIndex,
                 cart: newCart
             })
-        } else dispatch({type: AppStateActionTypes.SET_ERROR_MODAL, visible: true, title: "error", text: "error"})
+        } else
+            dispatch({type: AppStateActionTypes.SET_ERROR_MODAL, visible: true, title: "error", text: "error"})
     }
 
     return (

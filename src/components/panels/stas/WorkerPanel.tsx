@@ -7,7 +7,7 @@ import {WorkerService} from "../../../API/WorkerService";
 import {StasStateActionTypes} from "../../../store/stasReducer/stasReducer.type";
 import InputCustom from "../../Input/InputCustom";
 import {AppStateActionTypes} from "../../../store/appReducer/appReducer.type";
-import SelectWorkerModal from "../../Modals/SelectWorkerModal";
+import SelectWorkerModal from "../../modals/SelectWorkerModal";
 import {useLoader} from "../../../hooks/useLoader";
 import {Worker} from "../../../store/stasReducer/types/worker.types";
 import {TableTypeEnum} from "../../../store/stasReducer/types/table.types";

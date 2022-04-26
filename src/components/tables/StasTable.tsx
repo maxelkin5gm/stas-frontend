@@ -1,23 +1,29 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {useTypeDispatch} from "../../hooks/useTypeDispatch";
 
-import BaseTable from "./BaseTable";
+import BaseTable from "./BaseTable/BaseTable";
 import {StasStateActionTypes} from "../../store/stasReducer/stasReducer.type";
-import DoubleClickRowModal from "../Modals/DoubleClickRowModal";
+import DoubleClickRowModal from "../modals/DoubleClickRowModal";
+import {AppStateActionTypes} from "../../store/appReducer/appReducer.type";
+import {fillStasTable} from "./utils/fillStasTable";
 
 interface MainTableProps {
     stasIndex: number,
     isLoading?: boolean
 }
 
-const MainTable = ({stasIndex, isLoading}: MainTableProps) => {
+const StasTable = ({stasIndex, isLoading}: MainTableProps) => {
     const tableQuery = useTypeSelector(state => state.stasList[stasIndex].table);
     const dispatch = useTypeDispatch();
 
     const [modalState, setModalState] = useState({
         visible: false,
         row: {} as any
+    })
+    const [tableState, setTableState] = useState({
+        columns: [] as any[],
+        data: [] as any[]
     })
 
     function onClickRowHandler(row: any) {
@@ -35,10 +41,22 @@ const MainTable = ({stasIndex, isLoading}: MainTableProps) => {
         setModalState({row, visible: true})
     }
 
+    useEffect(() => {
+        fillStasTable(tableQuery, stasIndex, setTableState)
+            .catch((e: Error) => dispatch({
+                type: AppStateActionTypes.SET_ERROR_MODAL,
+                visible: true,
+                title: "Ошибка",
+                text: e.message
+            }))
+    }, [tableQuery, stasIndex, dispatch])
+
     return (
         <>
-            <BaseTable isLoading={isLoading} onClickRow={onClickRowHandler} onDoubleClickRow={onDoubleClickHandler}
-                       tableQuery={tableQuery}/>
+            <BaseTable tableState={tableState}
+                       isLoading={isLoading}
+                       onClickRow={onClickRowHandler}
+                       onDoubleClickRow={onDoubleClickHandler}/>
 
 
             <DoubleClickRowModal stasIndex={stasIndex} modalState={modalState}
@@ -48,4 +66,4 @@ const MainTable = ({stasIndex, isLoading}: MainTableProps) => {
     );
 };
 
-export default MainTable;
+export default StasTable;

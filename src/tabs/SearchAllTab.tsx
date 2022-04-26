@@ -2,11 +2,11 @@ import React from 'react';
 import {useTypeSelector} from "../hooks/useTypeSelector";
 
 import cl from "./SearchAllTab.module.scss";
-import WorkerPanel from "../components/Panels/searchAll/WorkerPanel";
-import DetailPanel from "../components/Panels/searchAll/DetailPanel";
-import StoPanel from "../components/Panels/searchAll/StoPanel";
-import RemainderStoPanel from "../components/Panels/searchAll/RemainderStoPanel";
-import TablePanel from "../components/Panels/searchAll/table/TablePanel";
+import WorkerPanel from "../components/panels/searchAll/WorkerPanel";
+import DetailPanel from "../components/panels/searchAll/DetailPanel";
+import StoPanel from "../components/panels/searchAll/StoPanel";
+import RemainderStoPanel from "../components/panels/searchAll/RemainderStoPanel";
+import TablePanel from "../components/panels/searchAll/table/TablePanel";
 
 const SearchAllTab = () => {
     const tabIndex = useTypeSelector(state => state.app.tabIndex)

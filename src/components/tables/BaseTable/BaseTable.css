@@ -6,6 +6,6 @@
     cursor: pointer !important;
 }
 
-.ant-table-wrapper table {
-    background: white !important;
+.ant-table-cell-row-hover {
+    background: rgba(0, 0, 0, 0.1) !important;
 }
