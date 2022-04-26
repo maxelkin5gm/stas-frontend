@@ -62,18 +62,20 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
     }
 
     function resetHandler() {
-        dispatch({type: StasStateActionTypes.RESET_WORKER, stasIndex})
+        dispatch({type: StasStateActionTypes.SET_WORKER, stasIndex, worker: {name: "", personnelNumber: ""}})
     }
 
     function tableHandler() {
-        dispatch({
-            type: StasStateActionTypes.SET_TABLE,
-            stasIndex: stasIndex,
-            table: {
-                type: TableTypeEnum.WORKER,
-                query: worker
-            }
-        })
+        if (!worker.personnelNumber)
+            dispatch({
+                type: AppStateActionTypes.SET_ERROR_MODAL, visible: true, title: "Ошибка", text: "Сотрудник не выбран"
+            })
+        else
+            dispatch({
+                type: StasStateActionTypes.SET_TABLE,
+                stasIndex: stasIndex,
+                table: {type: TableTypeEnum.WORKER, query: worker}
+            })
     }
 
     return (

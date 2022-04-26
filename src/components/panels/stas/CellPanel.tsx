@@ -3,6 +3,9 @@ import {Button, Radio} from "antd";
 import InputCustom from "../../Input/InputCustom";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {StasStateEnum} from "../../../store/stasReducer/types/state.types";
+import {StasStateActionTypes} from "../../../store/stasReducer/stasReducer.type";
+import {TableTypeEnum} from "../../../store/stasReducer/types/table.types";
+import {useTypeDispatch} from "../../../hooks/useTypeDispatch";
 
 interface CellPanelProps {
     stasIndex: number,
@@ -10,8 +13,17 @@ interface CellPanelProps {
 
 const CellPanel = ({stasIndex}: CellPanelProps) => {
     const stasState = useTypeSelector(state => state.stasList[stasIndex].state);
+    const dispatch = useTypeDispatch();
+
     const cellInputState = useState("");
     const [radioValue, setRadioValue] = useState("ПРАВО");
+
+    function tableHandler() {
+        dispatch({
+            type: StasStateActionTypes.SET_TABLE, stasIndex,
+            table: {type: TableTypeEnum.CELL, query: {side: radioValue, cellNumber: Number(cellInputState[0])}}
+        })
+    }
 
     return (
         <>
@@ -27,7 +39,7 @@ const CellPanel = ({stasIndex}: CellPanelProps) => {
             </div>
 
             <div style={{gridColumn: "span 2"}}>
-                <Button disabled={stasState !== StasStateEnum.READY} type="primary" size="middle">Показать</Button>
+                <Button disabled={stasState !== StasStateEnum.READY} onClick={tableHandler} type="primary" size="middle">Показать</Button>
             </div>
 
             <div style={{gridColumn: "span 2"}}>

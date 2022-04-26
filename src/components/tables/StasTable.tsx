@@ -42,7 +42,9 @@ const StasTable = ({stasIndex, isLoading}: MainTableProps) => {
     }
 
     useEffect(() => {
+        dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: true})
         fillStasTable(tableQuery, stasIndex, setTableState)
+            .finally(() => dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: false}))
             .catch((e: Error) => dispatch({
                 type: AppStateActionTypes.SET_ERROR_MODAL,
                 visible: true,

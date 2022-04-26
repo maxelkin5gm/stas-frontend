@@ -33,10 +33,6 @@ export const stasReducer = (state: StasState[] = initialStore, action: StasActio
             newState[action.stasIndex].worker = action.worker;
             return newState;
 
-        case StasStateActionTypes.RESET_WORKER:
-            newState[action.stasIndex].worker = {name: '', personnelNumber: ''};
-            return newState;
-
         case StasStateActionTypes.SET_TABLE:
             newState[action.stasIndex].table = action.table;
             return newState;

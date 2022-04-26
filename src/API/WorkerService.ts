@@ -21,7 +21,7 @@ export class WorkerService {
         return null;
     }
 
-    static async findAllStoByNumber(personnelNumber: string) {
+    static async findAllStoByWorker(personnelNumber: string) {
         const res = await fetch("/data/worker.findAllStoByNumber.json")
 
         if (res.status !== 200) throw Error("Произошла ошибка связи с сервером")
@@ -31,8 +31,8 @@ export class WorkerService {
     }
 
     // todo
-    static async findAllStoByNumberAndStas(personnelNumber: string, stasIndex: number) {
-        const res = await fetch("/data/worker.getReceivedStoByPersonnelNumber.json")
+    static async findAllStoByWorkerAndStas(personnelNumber: string, stasIndex: number) {
+        const res = await fetch("/data/worker.findAllStoByNumber.json")
 
         if (res.status !== 200) throw Error("Произошла ошибка связи с сервером")
 

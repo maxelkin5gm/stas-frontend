@@ -17,7 +17,6 @@ export interface StasState {
 export enum StasStateActionTypes {
     SET_STATE = "SET_STATE",
     SET_WORKER = "SET_WORKER",
-    RESET_WORKER = "RESET_WORKER",
     SET_TABLE = "SET_TABLE",
     SET_SELECTED_CELL = "SET_SELECTED_CELL",
     SET_CART = "SET_CART"
@@ -36,10 +35,6 @@ export interface SetWorkerAction {
     stasIndex: number,
     worker: Worker
 }
-export interface ResetWorkerAction {
-    type: StasStateActionTypes.RESET_WORKER,
-    stasIndex: number
-}
 export interface SetTableAction {
     type: StasStateActionTypes.SET_TABLE,
     stasIndex: number,
@@ -56,4 +51,4 @@ export interface SetCartAction {
     cart: Cart[]
 }
 
-export type StasAction = SetStateAction | SetWorkerAction | ResetWorkerAction | SetTableAction | SetSelectedCellAction | SetCartAction;
+export type StasAction = SetStateAction | SetWorkerAction | SetTableAction | SetSelectedCellAction | SetCartAction;

@@ -9,7 +9,7 @@ export async function fillSearchAllTable({type, query}: TableQuery, stasIndex: n
         case TableTypeEnum.WORKER:
             setTableState({
                 columns: receivedStoColumns,
-                data: await WorkerService.findAllStoByNumber(query.personnelNumber)
+                data: await WorkerService.findAllStoByWorker(query.personnelNumber)
             })
             return;
 

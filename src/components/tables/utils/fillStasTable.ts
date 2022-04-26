@@ -2,6 +2,7 @@ import {TableQuery, TableTypeEnum} from "../../../store/stasReducer/types/table.
 import {WorkerService} from "../../../API/WorkerService";
 import {CellService} from "../../../API/CellService";
 import {receivedStoColumns} from "../columns/stas/receivedStoColumns";
+import {cellColumns} from "../columns/stas/cellColumns";
 
 export async function fillStasTable({type, query}: TableQuery, stasIndex: number, setTableState: Function) {
     switch (type) {
@@ -9,14 +10,14 @@ export async function fillStasTable({type, query}: TableQuery, stasIndex: number
         case TableTypeEnum.WORKER:
             setTableState({
                 columns: receivedStoColumns,
-                data: await WorkerService.findAllStoByNumber(query.personnelNumber)
+                data: await WorkerService.findAllStoByWorkerAndStas(query.personnelNumber, stasIndex)
             })
             return;
 
         case TableTypeEnum.CELL:
             setTableState({
-                columns: receivedStoColumns,
-                data: await CellService.findAllByCellAndStas(query.cellNumber, query.side, stasIndex as number)
+                columns: cellColumns,
+                data: await CellService.findAllStoByCellAndStas(query.cellNumber, query.side, stasIndex as number)
             })
             return;
 
