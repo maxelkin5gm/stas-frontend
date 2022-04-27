@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Button} from "antd";
+import {useTypeSelector} from "../../hooks/useTypeSelector";
 
 import BaseModal from "./BaseModal";
 import InputNumber from "../Input/InputNumber";
 import cl from "./DoubleClickRowModal.module.scss";
-import {useTypeSelector} from "../../hooks/useTypeSelector";
+
 import {StasStateEnum} from "../../store/stasReducer/types/state.types";
 import {Cart} from "../../store/stasReducer/types/cart.types";
 import {CartService} from "../../services/CartService";
@@ -25,12 +26,14 @@ const DoubleClickRowModal = ({modalState, onClose, stasIndex}: DoubleClickRowMod
     const dispatch = useTypeDispatch();
     const stasState = useTypeSelector(state => state.stasList[stasIndex].state)
     const cart = useTypeSelector(state => state.stasList[stasIndex].cart)
-    const countStoInputState = useState(1);
+
+    const [countStoInputState, setCountStoInputState] = useState(1);
     const [noteInputState, setNoteInputState] = useState(modalState.row.note)
 
     useEffect(() => {
-        setNoteInputState(modalState.row.note)
-    }, [modalState.row.note])
+        setNoteInputState(modalState.row.note);
+        setCountStoInputState(1);
+    }, [modalState])
 
     if (!modalState.visible) return null;
 
@@ -39,10 +42,18 @@ const DoubleClickRowModal = ({modalState, onClose, stasIndex}: DoubleClickRowMod
     }
 
     function addToCartHandler() {
+        if (countStoInputState < 1)
+            dispatch({
+                type: AppStateActionTypes.SET_ERROR_MODAL,
+                visible: true,
+                title: "Ошибка",
+                text: "Неверно введено количество"
+            })
+
         const newItem: Cart = {
             key: modalState.row.sto,
             sto: modalState.row.sto,
-            amount: countStoInputState[0],
+            amount: countStoInputState,
             detail: "test detail",
             operationNumber: "test operation"
         }
@@ -57,22 +68,22 @@ const DoubleClickRowModal = ({modalState, onClose, stasIndex}: DoubleClickRowMod
                 cart: newCart
             })
         } else
-            dispatch({type: AppStateActionTypes.SET_ERROR_MODAL, visible: true, title: "error", text: "error"})
+            dispatch({type: AppStateActionTypes.SET_ERROR_MODAL, visible: true, title: "Ошибка", text: "Превышено количество"})
     }
 
     return (
         <BaseModal onClose={onClose}>
             <div className={cl.modal}>
 
-                {stasState === StasStateEnum.WAIT
+                {stasState === StasStateEnum.READY
                     ? <div className={cl.leftSide}>
-                        <h3>Выбрано: {modalState.row.sto}</h3>
+                        <h3>Выбрано: <span>{modalState.row.sto}</span></h3>
                         <select multiple>
                             <option value="боеголовка 228">боеголовка 228</option>
                             <option value="корпус 229">корпус 229</option>
                         </select>
-                        <InputNumber valueState={countStoInputState}/>
-                        <Button type="primary" size="middle" onClick={addToCartHandler}>Добавить в корзину</Button>
+                        <InputNumber valueState={[countStoInputState, setCountStoInputState]}/>
+                        <Button type="primary" size="large" onClick={addToCartHandler}>Добавить в корзину</Button>
                     </div>
                     : null}
 
@@ -80,7 +91,7 @@ const DoubleClickRowModal = ({modalState, onClose, stasIndex}: DoubleClickRowMod
                 <div className={cl.rightSide}>
                     <h3>Изменение примечания</h3>
                     <textarea value={noteInputState} onChange={e => setNoteInputState(e.target.value)}></textarea>
-                    <Button type="primary" size="middle" onClick={saveNoteHandler}>Сохранить</Button>
+                    <Button type="primary" size="large" onClick={saveNoteHandler}>Сохранить</Button>
                 </div>
 
             </div>

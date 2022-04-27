@@ -10,7 +10,8 @@ const InputNumber = ({valueState}: InputNumberProps) => {
     return (
         <input className={cl.inputNumber} min={1} type="number"
                value={valueState[0]}
-               onChange={e => valueState[1](Number(e.target.value))}/>
+               onChange={e => valueState[1](Number(e.target.value))}
+        />
     );
 };
 

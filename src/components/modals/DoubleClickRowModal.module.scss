@@ -1,13 +1,12 @@
 .modal {
   display: flex;
   justify-content: center;
-  height: 300px;
-  width: 700px;
 
   > div {
+    width: 400px;
+    height: 400px;
     margin: 10px;
-    flex-basis: 50%;
-    background: rgba(0,0,0,0.3);
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 5px;
   }
 
@@ -21,6 +20,12 @@
       font-size: 18px;
       padding: 5px;
       overflow: auto;
+      flex-basis: 50%;
+    }
+
+    h3 span {
+      border: 1px solid black;
+      padding: 5px;
     }
   }
 

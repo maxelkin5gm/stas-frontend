@@ -12,11 +12,14 @@ interface BaseModalProps {
 const BaseModal = ({children, onClose}: BaseModalProps) => {
     return (
         <div className={cl.baseModal}>
+
+
             <div className={cl.baseModal__content}>
 
                 {children}
 
                 <Button danger type="default" size="large" onClick={onClose}>Закрыть</Button>
+
             </div>
         </div>
     );
