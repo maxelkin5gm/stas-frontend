@@ -4,6 +4,7 @@ import {cellColumns} from "../columns/stas/cellColumns";
 import {detailColumns} from "../columns/stas/detailColumns";
 import {stoColumns} from "../columns/stas/stoColumns";
 import {StoService} from "../../../services/StoService";
+import {CellService} from "../../../services/CellService";
 
 export async function fillStasTable({type, query}: TableQuery, stasIndex: number, setTableState: Function) {
     switch (type) {
@@ -29,7 +30,7 @@ export async function fillStasTable({type, query}: TableQuery, stasIndex: number
         case TableTypeEnum.STO:
             setTableState({
                 columns: stoColumns,
-                data: await StoService.findAllCellByStoAndStas(query.sto, stasIndex)
+                data: await CellService.findAllCellByStoAndStas(query.sto, stasIndex)
             })
             return;
 

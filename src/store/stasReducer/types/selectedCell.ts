@@ -1,4 +1,10 @@
 export interface SelectedCell {
-    cellNumber: number | null,
-    side: string | null
+    cellNumber: number,
+    side: string,
+    status: StatusCell
+}
+
+export enum StatusCell {
+    INSTALLED = "УСТАНОВЛЕНА",
+    REMOVED = "СНЯТА"
 }

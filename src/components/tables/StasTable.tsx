@@ -32,7 +32,8 @@ const StasTable = ({stasIndex, isLoading}: MainTableProps) => {
             stasIndex,
             selectedCell: {
                 cellNumber: row.cellNumber,
-                side: row.side
+                side: row.side,
+                status: row.status
             }
         })
     }

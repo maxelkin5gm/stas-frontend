@@ -5,7 +5,7 @@
     "remainder": "2",
     "side": "ПРАВО",
     "cellNumber": 50,
-    "status": "НА МЕСТЕ",
+    "status": "УСТАНОВЛЕНА",
     "note": "note1"
   },
   {
@@ -14,7 +14,7 @@
     "remainder": "3",
     "side": "ПРАВО",
     "cellNumber": 50,
-    "status": "НА МЕСТЕ",
+    "status": "УСТАНОВЛЕНА",
     "note": "note1"
   },
   {
@@ -23,7 +23,7 @@
     "remainder": "1",
     "side": "ПРАВО",
     "cellNumber": 50,
-    "status": "НА МЕСТЕ",
+    "status": "УСТАНОВЛЕНА",
     "note": "note1"
   }
 ]

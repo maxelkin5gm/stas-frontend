@@ -8,7 +8,7 @@
     "date": "date",
     "side": "ПРАВО",
     "cellNumber": 228,
-    "status": "НА МЕСТЕ",
+    "status": "УСТАНОВЛЕНА",
     "note": "note1"
   },
   {
@@ -32,7 +32,7 @@
     "date": "date",
     "side": "ПРАВО",
     "cellNumber": 50,
-    "status": "НА МЕСТЕ",
+    "status": "УСТАНОВЛЕНА",
     "note": "note3"
   }
 ]

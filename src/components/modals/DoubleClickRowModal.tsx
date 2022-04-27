@@ -46,7 +46,7 @@ const DoubleClickRowModal = ({modalState, onClose, stasIndex}: DoubleClickRowMod
             detail: "test detail",
             operationNumber: "test operation"
         }
-        const fullAmount = 10;
+        const fullAmount: number = modalState.row.remainder;
 
         const newCart = CartService.add(cart, newItem, fullAmount);
 

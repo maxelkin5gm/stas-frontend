@@ -12,10 +12,7 @@ const stasInit: StasState = {
         type: TableTypeEnum.CLEAR,
         query: undefined
     },
-    selectedCell: {
-        cellNumber: null,
-        side: null,
-    },
+    selectedCell: null,
     cart: []
 }
 const initialStore: StasState[] = [{...stasInit}, {...stasInit}, {...stasInit}]
@@ -35,6 +32,10 @@ export const stasReducer = (state: StasState[] = initialStore, action: StasActio
 
         case StasStateActionTypes.SET_TABLE:
             newState[action.stasIndex].table = action.table;
+            return newState;
+
+        case StasStateActionTypes.REFRESH_TABLE:
+            newState[action.stasIndex].table = {...state[action.stasIndex].table};
             return newState;
 
         case StasStateActionTypes.SET_SELECTED_CELL:
