@@ -3,12 +3,11 @@ import {Button} from "antd";
 import {useTypeSelector} from "../../../hooks/useTypeSelector";
 import {useTypeDispatch} from "../../../hooks/useTypeDispatch";
 
-import {WorkerService} from "../../../API/WorkerService";
+import {WorkerService} from "../../../services/WorkerService";
 import {StasStateActionTypes} from "../../../store/stasReducer/stasReducer.type";
 import InputCustom from "../../Input/InputCustom";
 import {AppStateActionTypes} from "../../../store/appReducer/appReducer.type";
 import SelectWorkerModal from "../../modals/SelectWorkerModal";
-import {useLoader} from "../../../hooks/useLoader";
 import {Worker} from "../../../store/stasReducer/types/worker.types";
 import {TableTypeEnum} from "../../../store/stasReducer/types/table.types";
 import {StasStateEnum} from "../../../store/stasReducer/types/state.types";
@@ -26,9 +25,10 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
     const numberInputState = useState("");
     const nameInputState = useState("");
 
-
     async function selectByNameHandler() {
+        dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: true})
         const workers: Worker[] | null = await WorkerService.findAllByName(nameInputState[0])
+        dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: false})
 
         if (!workers || workers.length === 0) {
             dispatch({
@@ -48,7 +48,9 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
     }
 
     async function selectByNumberHandler() {
+        dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: true})
         const worker: Worker | null = await WorkerService.findByPersonnelNumber(numberInputState[0])
+        dispatch({type: AppStateActionTypes.SET_LOADING, isLoading: false})
 
         if (!worker)
             dispatch({
@@ -81,12 +83,17 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
     return (
         <>
             <div>
-                <InputCustom placeholder={"Табельный номер"} type={"number"} valueState={numberInputState}/>
+                <form id={"formNumber"} onSubmit={e => {
+                    e.preventDefault();
+                    selectByNumberHandler()
+                }}>
+                    <InputCustom required placeholder={"Табельный номер"} type={"number"}
+                                 valueState={numberInputState}/>
+                </form>
             </div>
 
             <div>
-                <Button type="primary" size="middle" onClick={useLoader(selectByNumberHandler)}
-                        key={stasIndex}>Выбрать</Button>
+                <Button htmlType={"submit"} form={"formNumber"} type="primary" size="middle">Выбрать</Button>
             </div>
 
             <div style={{gridRow: "span 2"}}>
@@ -94,11 +101,16 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             </div>
 
             <div>
-                <InputCustom placeholder={"ФИО"} valueState={nameInputState}/>
+                <form id={"formName"} onSubmit={e => {
+                    e.preventDefault();
+                    selectByNameHandler()
+                }}>
+                    <InputCustom required placeholder={"ФИО"} valueState={nameInputState}/>
+                </form>
             </div>
 
             <div>
-                <Button type="primary" size="middle" onClick={useLoader(selectByNameHandler)}>Выбрать</Button>
+                <Button htmlType={"submit"} form={"formName"} type="primary" size="middle">Выбрать</Button>
             </div>
 
             <div style={{textAlign: "center"}}>
@@ -114,9 +126,8 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
                         size="middle" onClick={tableHandler}>Показать выданные СТО</Button>
             </div>
 
-            <SelectWorkerModal modalState={modalState}
+            <SelectWorkerModal modalState={modalState} stasIndex={stasIndex}
                                onClose={() => setModalState({...modalState, visible: false})}
-                               stasIndex={stasIndex}
             />
         </>
     );

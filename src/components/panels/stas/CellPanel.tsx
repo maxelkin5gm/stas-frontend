@@ -26,26 +26,31 @@ const CellPanel = ({stasIndex}: CellPanelProps) => {
     }
 
     return (
-        <>
+        <form onSubmit={e => {
+            e.preventDefault();
+            tableHandler()
+        }}>
             <div>
-                <InputCustom type={"number"} valueState={cellInputState} placeholder={"№ ячейки"}/>
+                <InputCustom required type={"number"} valueState={cellInputState} placeholder={"№ ячейки"}/>
             </div>
 
             <div>
-                <Radio.Group size="small" defaultValue="ПРАВО" buttonStyle="solid" value={radioValue} onChange={(e => setRadioValue(e.target.value))}>
+                <Radio.Group size="small" defaultValue="ПРАВО" buttonStyle="solid" value={radioValue}
+                             onChange={(e => setRadioValue(e.target.value))}>
                     <Radio.Button value="ПРАВО">ПРАВО</Radio.Button>
                     <Radio.Button value="ЛЕВО ">ЛЕВО</Radio.Button>
                 </Radio.Group>
             </div>
 
             <div style={{gridColumn: "span 2"}}>
-                <Button disabled={stasState !== StasStateEnum.READY} onClick={tableHandler} type="primary" size="middle">Показать</Button>
+                <Button disabled={stasState !== StasStateEnum.READY} htmlType={"submit"} type="primary"
+                        size="middle">Показать</Button>
             </div>
 
-            <div style={{gridColumn: "span 2"}}>
-                <Button disabled={stasState !== StasStateEnum.WAIT} type="primary" size="middle">Показать привезенную</Button>
-            </div>
-        </>
+            {/*<div style={{gridColumn: "span 2"}}>*/}
+            {/*    <Button disabled={stasState !== StasStateEnum.WAIT} type="primary" size="middle">Показать привезенную</Button>*/}
+            {/*</div>*/}
+        </form>
 
     );
 };

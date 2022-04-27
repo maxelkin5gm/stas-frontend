@@ -2,12 +2,13 @@ import React, {ChangeEvent, HTMLInputTypeAttribute} from 'react';
 import cl from './InputcCustom.module.scss'
 
 interface InputCustomProps {
+    valueState: [string, React.Dispatch<React.SetStateAction<string>>],
     type?: HTMLInputTypeAttribute,
     placeholder?: string,
-    valueState: [string, React.Dispatch<React.SetStateAction<string>>]
+    required?: boolean
 }
 
-const InputCustom = ({type = "text", placeholder = "", valueState}: InputCustomProps) => {
+const InputCustom = ({type = "text", placeholder = "", valueState, required}: InputCustomProps) => {
 
     const [value, setValue] = valueState;
 
@@ -17,7 +18,7 @@ const InputCustom = ({type = "text", placeholder = "", valueState}: InputCustomP
     }
 
     return (
-        <input type={type} className={cl.input} value={value} onChange={handler} placeholder={placeholder}/>
+        <input required={required} type={type} className={cl.input} value={value} onChange={handler} placeholder={placeholder}/>
     );
 };
 

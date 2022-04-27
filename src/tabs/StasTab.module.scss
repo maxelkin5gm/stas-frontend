@@ -24,25 +24,34 @@
   }
 
   .detail {
-    padding: 5px;
-    display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr;
-    align-items: center;
+    form {
+      height: 100%;
+      padding: 5px;
+      display: grid;
+      grid-template: 1fr 1fr 1fr / 1fr;
+      align-items: center;
+    }
   }
 
   .sto {
-    padding: 5px;
-    display: grid;
-    grid-template: 1fr 1fr / 1fr;
-    align-items: center;
+    form {
+      height: 100%;
+      padding: 5px;
+      display: grid;
+      grid-template: 1fr 1fr / 1fr;
+      align-items: center;
+    }
   }
 
   .cell {
-    padding: 5px;
-    display: grid;
-    grid-template: 1fr 1fr 1fr / 1fr 1fr;
-    align-items: center;
-    text-align: center;
+    form {
+      height: 100%;
+      padding: 5px;
+      display: grid;
+      grid-template: 1fr 1fr / 1fr 1fr;
+      align-items: center;
+      text-align: center;
+    }
   }
 
   .table {

@@ -18,7 +18,7 @@ const RemainderStoPanel = () => {
             </div>
 
             <div>
-                <Button type="primary" size="large">Показать кому выдано</Button>
+                <Button type="primary" size="large">Показать</Button>
             </div>
         </>
     );

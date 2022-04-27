@@ -1,7 +1,7 @@
 import {Worker} from "./worker.types";
 
 export enum TableTypeEnum {
-    INIT = "INIT",
+    CLEAR = "CLEAR",
     WORKER = "WORKER",
     DETAIL = "DETAIL",
     STO = "STO",
@@ -12,7 +12,7 @@ export enum TableTypeEnum {
  * Query table types
  */
 interface InitTableQuery {
-    type: TableTypeEnum.INIT
+    type: TableTypeEnum.CLEAR
     query: undefined
 }
 
@@ -25,7 +25,7 @@ interface DetailTableQuery {
     type: TableTypeEnum.DETAIL,
     query: {
         detail: string,
-        operationNumber?: string
+        operationNumber: string
     }
 }
 

@@ -25,15 +25,19 @@ const StoPanel = ({stasIndex}: StoPanelProps) => {
     }
 
     return (
-        <>
+        <form onSubmit={e => {
+            e.preventDefault();
+            tableHandler()
+        }}>
             <div>
-                <InputCustom valueState={stoInputState} placeholder={"Обозначение СТО"}/>
+                <InputCustom required valueState={stoInputState} placeholder={"Обозначение СТО"}/>
             </div>
+
             <div style={{textAlign: "center"}}>
-                <Button disabled={stasState !== StasStateEnum.READY} onClick={tableHandler} type="primary"
+                <Button disabled={stasState !== StasStateEnum.READY} htmlType={"submit"} type="primary"
                         size="middle">Показать</Button>
             </div>
-        </>
+        </form>
     );
 };
 

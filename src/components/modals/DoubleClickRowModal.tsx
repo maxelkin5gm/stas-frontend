@@ -7,7 +7,7 @@ import cl from "./DoubleClickRowModal.module.scss";
 import {useTypeSelector} from "../../hooks/useTypeSelector";
 import {StasStateEnum} from "../../store/stasReducer/types/state.types";
 import {Cart} from "../../store/stasReducer/types/cart.types";
-import {CartService} from "../../API/CartService";
+import {CartService} from "../../services/CartService";
 import {useTypeDispatch} from "../../hooks/useTypeDispatch";
 import {StasStateActionTypes} from "../../store/stasReducer/stasReducer.type";
 import {AppStateActionTypes} from "../../store/appReducer/appReducer.type";

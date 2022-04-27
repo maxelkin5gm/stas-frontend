@@ -9,7 +9,7 @@ const stasInit: StasState = {
         personnelNumber: ""
     },
     table: {
-        type: TableTypeEnum.INIT,
+        type: TableTypeEnum.CLEAR,
         query: undefined
     },
     selectedCell: {
