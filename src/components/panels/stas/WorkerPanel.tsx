@@ -83,7 +83,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
     return (
         <>
             <div>
-                <form id={"formNumber"} onSubmit={e => {
+                <form id={"formNumber" + stasIndex} onSubmit={e => {
                     e.preventDefault();
                     selectByNumberHandler()
                 }}>
@@ -93,7 +93,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             </div>
 
             <div>
-                <Button htmlType={"submit"} form={"formNumber"} type="primary" size="middle">Выбрать</Button>
+                <Button htmlType={"submit"} form={"formNumber" + stasIndex} type="primary" size="middle">Выбрать</Button>
             </div>
 
             <div style={{gridRow: "span 2"}}>
@@ -101,7 +101,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             </div>
 
             <div>
-                <form id={"formName"} onSubmit={e => {
+                <form id={"formName" + stasIndex} onSubmit={e => {
                     e.preventDefault();
                     selectByNameHandler()
                 }}>
@@ -110,7 +110,7 @@ const WorkerPanel = ({stasIndex}: WorkerPanelProps) => {
             </div>
 
             <div>
-                <Button htmlType={"submit"} form={"formName"} type="primary" size="middle">Выбрать</Button>
+                <Button htmlType={"submit"} form={"formName" + stasIndex} type="primary" size="middle">Выбрать</Button>
             </div>
 
             <div style={{textAlign: "center"}}>

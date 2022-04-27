@@ -42,13 +42,15 @@ const DoubleClickRowModal = ({modalState, onClose, stasIndex}: DoubleClickRowMod
     }
 
     function addToCartHandler() {
-        if (countStoInputState < 1)
+        if (countStoInputState < 1) {
             dispatch({
                 type: AppStateActionTypes.SET_ERROR_MODAL,
                 visible: true,
                 title: "Ошибка",
                 text: "Неверно введено количество"
             })
+            return;
+        }
 
         const newItem: Cart = {
             key: modalState.row.sto,
@@ -75,9 +77,10 @@ const DoubleClickRowModal = ({modalState, onClose, stasIndex}: DoubleClickRowMod
         <BaseModal onClose={onClose}>
             <div className={cl.modal}>
 
-                {stasState === StasStateEnum.READY
+                {stasState === StasStateEnum.WAIT
                     ? <div className={cl.leftSide}>
                         <h3>Выбрано: <span>{modalState.row.sto}</span></h3>
+                        <h3>Количество в ячейке: {modalState.row.remainder}</h3>
                         <select multiple>
                             <option value="боеголовка 228">боеголовка 228</option>
                             <option value="корпус 229">корпус 229</option>

@@ -18,7 +18,7 @@ const StasTable = ({stasIndex, isLoading}: MainTableProps) => {
     const dispatch = useTypeDispatch();
 
     const [modalState, setModalState] = useState({
-        visible: true,
+        visible: false,
         row: {} as any
     })
     const [tableState, setTableState] = useState({
